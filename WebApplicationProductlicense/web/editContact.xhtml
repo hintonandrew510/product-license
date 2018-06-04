@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>License Manager</title>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"  />
+        <h:outputStylesheet library="css" name="bootstrap-formhelpers.min.css"  />
+        <h:outputStylesheet library="css" name="custom.css"  />
+
+
+    </h:head>
+    <h:body>
+        <div class="container" >
+            <div class="page-header" style="color: white; background-color: black;">
+                <div class="row">
+                    <div class="col-sm-4"> 
+                        <h:link class="btn btn-success btn-lg" outcome="index" >
+                            <span class="glyphicon glyphicon-plus"></span> Back 
+                        </h:link>
+                    </div>
+                    <div class="col-sm-4"> 
+                        <h1>Edit Contact</h1>
+                    </div>
+                    <div class="col-sm-4">
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <p:messages autoUpdate="true"/>
+        </div>
+        <div class="container" style="font-size: 2em;">
+            <h:form  id="form" data-toggle="validator">
+                <h:inputHidden value="#{editContactBean.contact.uuid}" />
+                <h:inputHidden value="#{editContactBean.contact.contactId}" />
+                <div class="form-group-lg">
+                    <label for="nameInputText">Name</label>
+                    <p:inputText placeholder="Enter name" styleClass="form-control input-lg" style="font-size: 1em;" id="nameInputText" required="true" value="#{editContactBean.contact.name}"    requiredMessage="Please enter name" validatorMessage="Name contains invalid characters">
+                        <f:validateRegex pattern="^[a-zA-Z][0-9a-zA-Z .,'-]*$"/>
+                    </p:inputText>
+
+                </div>
+                <div class="form-group-lg">
+
+                    <c:if test='#{confirmationContactBean.contact.clientType eq "TV"}'>
+                        <div class="radio">
+                            <label><input type="radio" value="TV" checked="checked" name="typeofclient"/>Television</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" value="Radio" name="typeofclient"/>Radio</label>
+                        </div> 
+                    </c:if>
+                    
+                    <c:if test='#{confirmationContactBean.contact.clientType eq "Radio"}'>
+                        <div class="radio">
+                            <label><input type="radio" value="TV"  name="typeofclient"/>Television</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" value="Radio" checked="checked" name="typeofclient"/>Radio</label>
+                        </div> 
+                    </c:if>
+
+
+
+                </div>
+
+
+                <div class="form-group-lg">
+                    <label for="nameInputPhone">Phone</label>
+
+                    <input name="nameInputPhone" id="nameInputPhone" value="#{editContactBean.contact.phone}"     type="text" class="form-control input-lg bfh-phone" data-format="+1 (ddd) ddd-dddd"/>
+
+                </div>
+
+
+                <div class="form-group-lg">
+                    <label for="exampleInputEmail">Email Address</label>
+
+                    <p:inputText style="font-size: 1em;" placeholder="Enter Email" styleClass="form-control input-lg"  id="exampleInputEmail" name="exampleInputEmail" value="#{editContactBean.contact.address}" required="true"  requiredMessage="Please enter your email address."
+                                 validatorMessage="Invalid email format" >
+
+                        <f:validateRegex
+                            pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                    </p:inputText>
+
+
+
+                </div>
+
+
+
+                <div class="form-group form-group-lg">
+                    <label for="startDate">Start Date</label>               
+                    <div class="bfh-datepicker" data-name="startDate" data-format="y-m-d" data-date="#{editContactBean.startformatDate}">
+
+                    </div>
+
+                </div>
+                <div class="form-group form-group-lg">
+                    <label for="endDate">End Date</label>               
+                    <div class="bfh-datepicker"  data-name="endDate" data-format="y-m-d" data-date="#{editContactBean.endformatDate}">
+
+                    </div>
+
+                </div>
+
+                <div class="form-group-lg">
+                    <label for="descTextarea">Description</label>
+                    <h:inputTextarea styleClass="form-control" id="GeneralInformationInputText" required="true" 
+                                     rows="4" cols="40"
+                                     value="#{editContactBean.contact.generalInformation}"
+                                     requiredMessage="Please enter general information">
+                    </h:inputTextarea>
+
+
+                </div>
+
+                <div class="form-group-lg">
+                    <label class="form-check-label">
+                        <h:selectBooleanCheckbox value="#{editContactBean.contact.active}"/>
+                        Active
+                    </label>
+
+                </div>
+
+                <p:commandButton styleClass="btn btn-primary" type="submit"  value="Update" action="#{editContactBean.update}" />
+
+            </h:form>
+        </div>
+
+
+        <!-- jQuery -->
+
+        <h:outputScript library="js" name="jquery-3.2.1.min.js" />
+
+        <!-- Bootstrap -->
+
+        <h:outputScript library="js" name="bootstrap.min.js" />
+
+        <!-- Bootstrap Form Helpers -->
+
+        <h:outputScript library="js" name="bootstrap-formhelpers.min.js" />
+        <h:outputScript library="js" name="bootstrap-formhelpers-phone.js" />
+
+
+    </h:body>
+</html>
+

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>License Manager</title>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"  />
+        <h:outputStylesheet library="css" name="custom.css"  />
+        <h:outputScript library="js" name="jquery-3.2.1.min.js" />
+        <h:outputScript library="js" name="bootstrap.min.js" />
+    </h:head>
+    <h:body>
+        <div class="container" >
+            <div class="page-header" style="color: white; background-color: black;">
+                <div class="row">
+                    <div class="col-sm-4"> 
+
+                    </div>
+                    <div class="col-sm-4"> 
+                        <h1> Expired Contacts</h1>
+                    </div>
+                    <div class="col-sm-4 pull-right center-block" style="padding-top: 20px;">
+                        <h:link class="btn btn-success btn-lg" outcome="addContact" >
+                            <span class="glyphicon glyphicon-plus"></span> New 
+                        </h:link>   
+
+                    </div>
+                </div>
+            </div>
+
+            <ul class="nav nav-tabs" style="font-size: 3em;">
+                <li><h:link value="All(#{listContactBean.contactList.size()})" outcome="index" /></li>
+                <li class="active"><a href="#">Expired(#{listContactBean.expiredContactList.size()})</a></li>
+                <li><h:link value="Disabled(#{listContactBean.inActiveContactList.size()})" outcome="inactiveList" /></li>
+
+
+            </ul>
+            <style>
+                .btn-huge{
+                    padding-top:20px;
+                    padding-bottom:20px;
+                }
+            </style>
+            <ui:repeat var="contact" value="#{listContactBean.expiredContactList}" varStatus="status">
+
+                <div class="container" style="font-size: 3em;">
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a class="btn btn-primary btn-lg btn-block btn-huge"  href="mailto:#{contact.address}#{contactUtilBean.getEmailMessage(contact)}"> Email License key to #{contact.name}</a> 
+                        </div>
+                        <div class="col-md-4">
+                            <h:link styleClass="btn btn-primary btn-lg btn-block btn-huge" style="color:white;" value="Change Days Left: #{contactUtilBean.getDaysLeft(contact)}" outcome="editContact.xhtml">
+                                <f:param name="id" value="#{contact.contactId}" />
+                            </h:link> 
+                        </div>
+                        <div class="col-md-4">
+                            <a class="btn btn-primary btn-lg btn-block btn-huge"  style="color:white;" href="tel:#{contact.phone}">
+                                Call #{contactUtilBean.getFormattedPhone(contact)}
+                            </a>
+                        </div>
+
+                    </div>
+                    <hr/>
+                </div>
+            </ui:repeat>
+            <script>
+                function gotoEditPage(id)
+                {
+                    window.location = "#{request.contextPath}/faces/editContact.xhtml?id=" + id;
+                }
+            </script>
+
+
+        </div>
+    </h:body>
+</html>
+
