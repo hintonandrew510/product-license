@@ -212,8 +212,10 @@ public class ContactHelper {
 
             //generated class to manage the table
             ContactDao dao = DaoFactory.createContactDao(connection);
-            com.mobile.dto.Contact[] services = dao.findAllByActive(Boolean.FALSE);
-
+           
+            //com.mobile.dto.Contact[] services = dao.findAllByActive(Boolean.FALSE);
+ com.mobile.dto.Contact[] services = dao.findAll();
+ 
             //Convert array to list and return the list
             List<com.mobile.dto.Contact> list = Arrays.asList(services);
             if (list != null) {
@@ -289,7 +291,8 @@ public class ContactHelper {
         try {
             connection = data.DatabaseManager.getConnection();
             ContactDao serviceDao = DaoFactory.createContactDao(connection);
-            com.mobile.dto.Contact[] contact = serviceDao.findFindByUUid(uuid);
+       
+            com.mobile.dto.Contact[] contact = serviceDao.findUUid(uuid);
             if (contact != null && contact.length > 0) {
                 //update usage date
                 java.util.Date today = new java.util.Date();

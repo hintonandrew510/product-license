@@ -29,19 +29,21 @@ public class Contact extends AbstractDto {
     private Integer contactId;
     private String name;
     private String uuid;
-    private String license;
     private String clientType;
+    private String license;
     private String generalInformation;
     private String phone;
-    private Timestamp usageDate;
     private Timestamp createdDate;
     private Timestamp startDate;
+    private Timestamp usageDate;
     private Timestamp endDate;
     private String address;
+    private String streetaddress;
+    private String city;
+    private String zipcode;
     private Boolean active;
 
     private boolean isPhoneModified;
-    private boolean isUsageDateModified;
     private boolean isActiveModified;
 
     ////////////////////////////////////////////////////////////////////////////
@@ -82,20 +84,20 @@ public class Contact extends AbstractDto {
         this.uuid = _val;
     }
 
-    public String getLicense() {
-        return license;
-    }
-
-    public void setLicense( String _val) {
-        this.license = _val;
-    }
-
     public String getClientType() {
         return clientType;
     }
 
     public void setClientType( String _val) {
         this.clientType = _val;
+    }
+
+    public String getLicense() {
+        return license;
+    }
+
+    public void setLicense( String _val) {
+        this.license = _val;
     }
 
     public String getGeneralInformation() {
@@ -117,23 +119,6 @@ public class Contact extends AbstractDto {
 
     public boolean isPhoneModified() {
         return isPhoneModified;
-    }
-
-    public Timestamp getUsageDate() {
-        return usageDate;
-    }
-
-    public void setUsageDate( java.util.Date _val ) {
-        setUsageDate((Timestamp)( _val != null ? new Timestamp( _val.getTime()) : null ));
-    }
-
-    public void setUsageDate( Timestamp _val) {
-        this.usageDate = _val;
-        this.isUsageDateModified = true;
-    }
-
-    public boolean isUsageDateModified() {
-        return isUsageDateModified;
     }
 
     public Timestamp getCreatedDate() {
@@ -160,6 +145,18 @@ public class Contact extends AbstractDto {
         this.startDate = _val;
     }
 
+    public Timestamp getUsageDate() {
+        return usageDate;
+    }
+
+    public void setUsageDate( java.util.Date _val ) {
+        setUsageDate((Timestamp)( _val != null ? new Timestamp( _val.getTime()) : null ));
+    }
+
+    public void setUsageDate( Timestamp _val) {
+        this.usageDate = _val;
+    }
+
     public Timestamp getEndDate() {
         return endDate;
     }
@@ -178,6 +175,30 @@ public class Contact extends AbstractDto {
 
     public void setAddress( String _val) {
         this.address = _val;
+    }
+
+    public String getStreetaddress() {
+        return streetaddress;
+    }
+
+    public void setStreetaddress( String _val) {
+        this.streetaddress = _val;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity( String _val) {
+        this.city = _val;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode( String _val) {
+        this.zipcode = _val;
     }
 
     public Boolean getActive() {
@@ -219,15 +240,15 @@ public class Contact extends AbstractDto {
         }
         else if ( _o.uuid == null || !uuid.equals( _o.uuid )) return false;
 
-        if ( license == null ) {
-            if ( _o.license != null ) return false;
-        }
-        else if ( _o.license == null || !license.equals( _o.license )) return false;
-
         if ( clientType == null ) {
             if ( _o.clientType != null ) return false;
         }
         else if ( _o.clientType == null || !clientType.equals( _o.clientType )) return false;
+
+        if ( license == null ) {
+            if ( _o.license != null ) return false;
+        }
+        else if ( _o.license == null || !license.equals( _o.license )) return false;
 
         if ( generalInformation == null ) {
             if ( _o.generalInformation != null ) return false;
@@ -239,11 +260,6 @@ public class Contact extends AbstractDto {
         }
         else if ( _o.phone == null || !phone.equals( _o.phone )) return false;
 
-        if ( usageDate == null ) {
-            if ( _o.usageDate != null ) return false;
-        }
-        else if ( _o.usageDate == null || usageDate.getTime() != _o.usageDate.getTime()) return false;
-
         if ( createdDate == null ) {
             if ( _o.createdDate != null ) return false;
         }
@@ -254,6 +270,11 @@ public class Contact extends AbstractDto {
         }
         else if ( _o.startDate == null || startDate.getTime() != _o.startDate.getTime()) return false;
 
+        if ( usageDate == null ) {
+            if ( _o.usageDate != null ) return false;
+        }
+        else if ( _o.usageDate == null || usageDate.getTime() != _o.usageDate.getTime()) return false;
+
         if ( endDate == null ) {
             if ( _o.endDate != null ) return false;
         }
@@ -263,6 +284,21 @@ public class Contact extends AbstractDto {
             if ( _o.address != null ) return false;
         }
         else if ( _o.address == null || !address.equals( _o.address )) return false;
+
+        if ( streetaddress == null ) {
+            if ( _o.streetaddress != null ) return false;
+        }
+        else if ( _o.streetaddress == null || !streetaddress.equals( _o.streetaddress )) return false;
+
+        if ( city == null ) {
+            if ( _o.city != null ) return false;
+        }
+        else if ( _o.city == null || !city.equals( _o.city )) return false;
+
+        if ( zipcode == null ) {
+            if ( _o.zipcode != null ) return false;
+        }
+        else if ( _o.zipcode == null || !zipcode.equals( _o.zipcode )) return false;
 
         if ( active == null ) {
             if ( _o.active != null ) return false;
@@ -281,15 +317,18 @@ public class Contact extends AbstractDto {
         _ret += contactId == null ? 0 : contactId;
         _ret = 29 * _ret + (name == null ? 0 : name.hashCode());
         _ret = 29 * _ret + (uuid == null ? 0 : uuid.hashCode());
-        _ret = 29 * _ret + (license == null ? 0 : license.hashCode());
         _ret = 29 * _ret + (clientType == null ? 0 : clientType.hashCode());
+        _ret = 29 * _ret + (license == null ? 0 : license.hashCode());
         _ret = 29 * _ret + (generalInformation == null ? 0 : generalInformation.hashCode());
         _ret = 29 * _ret + (phone == null ? 0 : phone.hashCode());
-        _ret = 29 * _ret + (usageDate == null ? 0 : (int)usageDate.getTime());
         _ret = 29 * _ret + (createdDate == null ? 0 : (int)createdDate.getTime());
         _ret = 29 * _ret + (startDate == null ? 0 : (int)startDate.getTime());
+        _ret = 29 * _ret + (usageDate == null ? 0 : (int)usageDate.getTime());
         _ret = 29 * _ret + (endDate == null ? 0 : (int)endDate.getTime());
         _ret = 29 * _ret + (address == null ? 0 : address.hashCode());
+        _ret = 29 * _ret + (streetaddress == null ? 0 : streetaddress.hashCode());
+        _ret = 29 * _ret + (city == null ? 0 : city.hashCode());
+        _ret = 29 * _ret + (zipcode == null ? 0 : zipcode.hashCode());
         _ret = 29 * _ret + (active == null ? 0 : (active ? 1 : 0));
 
         return _ret;
@@ -307,15 +346,18 @@ public class Contact extends AbstractDto {
         append( sb, "contactId", contactId );
         append( sb, "name", name );
         append( sb, "uuid", uuid );
-        append( sb, "license", license );
         append( sb, "clientType", clientType );
+        append( sb, "license", license );
         append( sb, "generalInformation", generalInformation );
         append( sb, "phone", phone );
-        append( sb, "usageDate", usageDate );
         append( sb, "createdDate", createdDate );
         append( sb, "startDate", startDate );
+        append( sb, "usageDate", usageDate );
         append( sb, "endDate", endDate );
         append( sb, "address", address );
+        append( sb, "streetaddress", streetaddress );
+        append( sb, "city", city );
+        append( sb, "zipcode", zipcode );
         append( sb, "active", active );
     }
 }

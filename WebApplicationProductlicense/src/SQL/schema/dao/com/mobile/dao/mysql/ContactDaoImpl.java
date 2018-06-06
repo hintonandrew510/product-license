@@ -34,11 +34,11 @@ public class ContactDaoImpl extends AbstractDaoImpl<Contact> implements ContactD
 
     private static final String TABLE_NAME = "contact";
 
-    protected static final String SELECT_COLUMNS = "contact_id, name, license, general_information, phone, created_date, start_date, end_date, address, active";
+    protected static final String SELECT_COLUMNS = "contact_id, name, Uuid, clientType, license, general_information, phone, created_date, start_date, usageDate, end_date, address, streetaddress, city, zipcode, active";
 
     protected static final String PK_CONDITION = "contact_id=?";
 
-    private static final String SQL_INSERT = "INSERT INTO contact (name,license,general_information,phone,created_date,start_date,end_date,address,active) VALUES (?,?,?,?,?,?,?,?,?)";
+    private static final String SQL_INSERT = "INSERT INTO contact (name,Uuid,clientType,license,general_information,phone,created_date,start_date,usageDate,end_date,address,streetaddress,city,zipcode,active) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     public ContactDaoImpl( Connection conn ) {
         super( conn );
@@ -57,6 +57,20 @@ public class ContactDaoImpl extends AbstractDaoImpl<Contact> implements ContactD
      */
     public Contact[] findAll( ) {
         return findManyArray( "1=1 ORDER BY name", 0, -1);
+    }
+
+    /**
+     * Finds inactive.
+     */
+    public Contact[] findAllByInActive(  ) {
+        return findManyArray( "active IS false", 0, -1);
+    }
+
+    /**
+     * Finds records.
+     */
+    public Contact[] findUUid( String uuid ) {
+        return findManyArray( "Uuid = ? >", 0, -1, uuid);
     }
 
     /**
@@ -86,49 +100,84 @@ public class ContactDaoImpl extends AbstractDaoImpl<Contact> implements ContactD
             checkMaxLength( "name", dto.getName(), 250 );
             stmt.setString( 1, dto.getName() );
 
+            if ( dto.getUuid() == null ) {
+                throw new DaoException("Value of column 'Uuid' cannot be null");
+            }
+            checkMaxLength( "Uuid", dto.getUuid(), 500 );
+            stmt.setString( 2, dto.getUuid() );
+
+            if ( dto.getClientType() == null ) {
+                throw new DaoException("Value of column 'clientType' cannot be null");
+            }
+            checkMaxLength( "clientType", dto.getClientType(), 500 );
+            stmt.setString( 3, dto.getClientType() );
+
             if ( dto.getLicense() == null ) {
                 throw new DaoException("Value of column 'license' cannot be null");
             }
             checkMaxLength( "license", dto.getLicense(), 3000 );
-            stmt.setString( 2, dto.getLicense() );
+            stmt.setString( 4, dto.getLicense() );
 
             if ( dto.getGeneralInformation() == null ) {
                 throw new DaoException("Value of column 'general_information' cannot be null");
             }
             checkMaxLength( "general_information", dto.getGeneralInformation(), 3000 );
-            stmt.setString( 3, dto.getGeneralInformation() );
+            stmt.setString( 5, dto.getGeneralInformation() );
 
             if ( dto.getPhone() != null ) {
                 checkMaxLength( "phone", dto.getPhone(), 250 );
             }
-            stmt.setString( 4, dto.getPhone() );
+            stmt.setString( 6, dto.getPhone() );
 
             if ( dto.getCreatedDate() == null ) {
                 dto.setCreatedDate( new Timestamp( System.currentTimeMillis()));
             }
-            stmt.setTimestamp( 5, dto.getCreatedDate() );
+            stmt.setTimestamp( 7, dto.getCreatedDate() );
 
             if ( dto.getStartDate() == null ) {
                 dto.setStartDate( new Timestamp( System.currentTimeMillis()));
             }
-            stmt.setTimestamp( 6, dto.getStartDate() );
+            stmt.setTimestamp( 8, dto.getStartDate() );
+
+            if ( dto.getUsageDate() == null ) {
+                dto.setUsageDate( new Timestamp( System.currentTimeMillis()));
+            }
+            stmt.setTimestamp( 9, dto.getUsageDate() );
 
             if ( dto.getEndDate() == null ) {
                 dto.setEndDate( new Timestamp( System.currentTimeMillis()));
             }
-            stmt.setTimestamp( 7, dto.getEndDate() );
+            stmt.setTimestamp( 10, dto.getEndDate() );
 
             if ( dto.getAddress() == null ) {
                 throw new DaoException("Value of column 'address' cannot be null");
             }
             checkMaxLength( "address", dto.getAddress(), 250 );
-            stmt.setString( 8, dto.getAddress() );
+            stmt.setString( 11, dto.getAddress() );
+
+            if ( dto.getStreetaddress() == null ) {
+                throw new DaoException("Value of column 'streetaddress' cannot be null");
+            }
+            checkMaxLength( "streetaddress", dto.getStreetaddress(), 250 );
+            stmt.setString( 12, dto.getStreetaddress() );
+
+            if ( dto.getCity() == null ) {
+                throw new DaoException("Value of column 'city' cannot be null");
+            }
+            checkMaxLength( "city", dto.getCity(), 250 );
+            stmt.setString( 13, dto.getCity() );
+
+            if ( dto.getZipcode() == null ) {
+                throw new DaoException("Value of column 'zipcode' cannot be null");
+            }
+            checkMaxLength( "zipcode", dto.getZipcode(), 20 );
+            stmt.setString( 14, dto.getZipcode() );
 
             if ( dto.getActive() == null ) {
-                stmt.setNull( 9, Types.TINYINT );
+                stmt.setNull( 15, Types.TINYINT );
             }
             else {
-                stmt.setByte( 9, dto.getActive() ? ((byte)1) : ((byte)0) );
+                stmt.setByte( 15, dto.getActive() ? ((byte)1) : ((byte)0) );
             }
 
             int n = stmt.executeUpdate();
@@ -165,6 +214,26 @@ public class ContactDaoImpl extends AbstractDaoImpl<Contact> implements ContactD
             params.add( dto.getName());
         }
 
+        if ( dto.getUuid() != null ) {
+            if (sb.length() > 0) {
+                sb.append( ", " );
+            }
+
+            checkMaxLength( "Uuid", dto.getUuid(), 500 );
+            sb.append( "Uuid=?" );
+            params.add( dto.getUuid());
+        }
+
+        if ( dto.getClientType() != null ) {
+            if (sb.length() > 0) {
+                sb.append( ", " );
+            }
+
+            checkMaxLength( "clientType", dto.getClientType(), 500 );
+            sb.append( "clientType=?" );
+            params.add( dto.getClientType());
+        }
+
         if ( dto.getGeneralInformation() != null ) {
             if (sb.length() > 0) {
                 sb.append( ", " );
@@ -199,6 +268,15 @@ public class ContactDaoImpl extends AbstractDaoImpl<Contact> implements ContactD
             params.add( dto.getStartDate());
         }
 
+        if ( dto.getUsageDate() != null ) {
+            if (sb.length() > 0) {
+                sb.append( ", " );
+            }
+
+            sb.append( "usageDate=?" );
+            params.add( dto.getUsageDate());
+        }
+
         if ( dto.getEndDate() != null ) {
             if (sb.length() > 0) {
                 sb.append( ", " );
@@ -216,6 +294,36 @@ public class ContactDaoImpl extends AbstractDaoImpl<Contact> implements ContactD
             checkMaxLength( "address", dto.getAddress(), 250 );
             sb.append( "address=?" );
             params.add( dto.getAddress());
+        }
+
+        if ( dto.getStreetaddress() != null ) {
+            if (sb.length() > 0) {
+                sb.append( ", " );
+            }
+
+            checkMaxLength( "streetaddress", dto.getStreetaddress(), 250 );
+            sb.append( "streetaddress=?" );
+            params.add( dto.getStreetaddress());
+        }
+
+        if ( dto.getCity() != null ) {
+            if (sb.length() > 0) {
+                sb.append( ", " );
+            }
+
+            checkMaxLength( "city", dto.getCity(), 250 );
+            sb.append( "city=?" );
+            params.add( dto.getCity());
+        }
+
+        if ( dto.getZipcode() != null ) {
+            if (sb.length() > 0) {
+                sb.append( ", " );
+            }
+
+            checkMaxLength( "zipcode", dto.getZipcode(), 20 );
+            sb.append( "zipcode=?" );
+            params.add( dto.getZipcode());
         }
 
         if ( dto.isActiveModified()) {
@@ -258,14 +366,20 @@ public class ContactDaoImpl extends AbstractDaoImpl<Contact> implements ContactD
         Contact dto = new Contact();
         dto.setContactId( rs.getInt( 1 ));
         dto.setName( rs.getString( 2 ));
-        dto.setLicense( rs.getString( 3 ));
-        dto.setGeneralInformation( rs.getString( 4 ));
-        dto.setPhone( rs.getString( 5 ));
-        dto.setCreatedDate( rs.getTimestamp( 6 ));
-        dto.setStartDate( rs.getTimestamp( 7 ));
-        dto.setEndDate( rs.getTimestamp( 8 ));
-        dto.setAddress( rs.getString( 9 ));
-        dto.setActive( rs.getBoolean( 10 ) ? Boolean.TRUE : Boolean.FALSE );
+        dto.setUuid( rs.getString( 3 ));
+        dto.setClientType( rs.getString( 4 ));
+        dto.setLicense( rs.getString( 5 ));
+        dto.setGeneralInformation( rs.getString( 6 ));
+        dto.setPhone( rs.getString( 7 ));
+        dto.setCreatedDate( rs.getTimestamp( 8 ));
+        dto.setStartDate( rs.getTimestamp( 9 ));
+        dto.setUsageDate( rs.getTimestamp( 10 ));
+        dto.setEndDate( rs.getTimestamp( 11 ));
+        dto.setAddress( rs.getString( 12 ));
+        dto.setStreetaddress( rs.getString( 13 ));
+        dto.setCity( rs.getString( 14 ));
+        dto.setZipcode( rs.getString( 15 ));
+        dto.setActive( rs.getBoolean( 16 ) ? Boolean.TRUE : Boolean.FALSE );
 
         if ( rs.wasNull()) {
             dto.setActive( null );

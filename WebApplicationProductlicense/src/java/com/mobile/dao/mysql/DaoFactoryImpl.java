@@ -19,8 +19,4 @@ public class DaoFactoryImpl extends DaoFactory.Factory {
         return new ContactDaoImpl( conn );
     }
 
-    public LogDao createLogDao( Connection conn ) {
-        return new LogDaoImpl( conn );
-    }
-
 }

@@ -44,10 +44,6 @@ public class DaoFactory {
         return factory.createContactDao( conn );
     }
 
-    public static LogDao createLogDao( Connection conn ) {
-        return factory.createLogDao( conn );
-    }
-
 
     ////////////////////////////////////////////////////////////////////////////
     // Inner classes
@@ -56,8 +52,6 @@ public class DaoFactory {
     public static abstract class Factory {
 
         public abstract ContactDao createContactDao( Connection conn );
-
-        public abstract LogDao createLogDao( Connection conn );
 
     }
 }

@@ -28,31 +28,21 @@
 CREATE TABLE contact (
 	contact_id int NOT NULL auto_increment,
 	name varchar(250) NOT NULL,
+	Uuid varchar(500) NOT NULL,
+	clientType varchar(500) NOT NULL,
 	license varchar(3000) NOT NULL,
 	general_information varchar(3000) NOT NULL,
 	phone varchar(250),
 	created_date datetime NOT NULL,
 	start_date datetime NOT NULL,
+	usageDate datetime NOT NULL,
 	end_date datetime NOT NULL,
 	address varchar(250) NOT NULL,
+	streetaddress varchar(250) NOT NULL,
+	city varchar(250) NOT NULL,
+	zipcode varchar(20) NOT NULL,
 	active tinyint
 	, PRIMARY KEY(contact_id )
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-
--- ======================== TABLE log ====================
-CREATE TABLE log (
-	log_id int NOT NULL auto_increment,
-	level int NOT NULL,
-	logger varchar(64) NOT NULL,
-	message varchar(255) NOT NULL,
-	sequence int NOT NULL,
-	sourceClass varchar(64) NOT NULL,
-	sourceMethod varchar(32) NOT NULL,
-	threadID int NOT NULL,
-	timeEntered datetime NOT NULL
-	, PRIMARY KEY(log_id )
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

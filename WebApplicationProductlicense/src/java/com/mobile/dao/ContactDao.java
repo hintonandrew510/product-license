@@ -33,14 +33,14 @@ public interface ContactDao extends AbstractDao {
     public Contact[] findAll( );
 
     /**
-     * Finds records ordered by name.
+     * Finds inactive.
      */
-    public Contact[] findFindByUUid( String uuid );
+    public Contact[] findAllByInActive(  );
 
     /**
-     * Finds records ordered by name.
+     * Finds records.
      */
-    public Contact[] findAllByActive( Boolean active );
+    public Contact[] findUUid( String uuid );
 
     /**
      * Deletes a record identified by its primary key.

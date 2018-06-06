@@ -19,6 +19,16 @@
                     <not-null/>
                     <edit/>
                 </column>
+                <column name="Uuid">
+                    <type max-length="500">String</type>
+                    <not-null/>
+                    <edit/>
+                </column>
+                <column name="clientType">
+                    <type max-length="500">String</type>
+                    <not-null/>
+                    <edit/>
+                </column>
                 <column name="license">
                     <type max-length="3000">String</type>
                     <not-null/>
@@ -44,6 +54,12 @@
                     <not-null/>
                     <edit/>
                 </column>
+                <column name="usageDate">
+                    <type>Timestamp</type>
+                    <auto/>
+                    <not-null/>
+                    <edit/>
+                </column>
                 <column name="end_date">
                     <type>Timestamp</type>
                     <auto/>
@@ -52,6 +68,23 @@
                 </column>
                 <column name="address">
                     <type max-length="250">String</type>
+                    <not-null/>
+                    <edit/>
+                </column>
+                <column name="streetaddress">
+                    <type max-length="250">String</type>
+                    <not-null/>
+                    <edit/>
+                </column>
+                
+                <column name="city">
+                    <type max-length="250">String</type>
+                    <not-null/>
+                    <edit/>
+                </column>
+                
+                <column name="zipcode">
+                    <type max-length="20">String</type>
                     <not-null/>
                     <edit/>
                 </column>
@@ -68,70 +101,36 @@
                         <column name="name"/>
                     </order-by>
                 </find>
-            		
+               
+                
+                <find name="allByInActive">
+                    <comment>Finds inactive</comment>
+                    
+                    <condition>
+                        <query>active IS false</query>
+                    </condition>
+     
+                </find>         
+                
+                <find name="UUid">
+                    <condition>
+                        <query>Uuid = ? ></query>
+                        <params>
+                            <column name="Uuid"/>
+                        </params>
+                    </condition>
+                </find> 
+               
+               
+               
+               
+               
                 <delete>
                     <pk/>
                 </delete>
             </methods>
         </table>
 
-        <table name="log">
-            <auto-find/>
-            <columns>
-                <column name="log_id">
-                    <type>int</type>
-                    <auto/>
-                    <pk/>
-                </column>
-                <column name="level">
-                    <type>int</type>
-                    <not-null/>
-                </column>
-                <column name="logger">
-                    <type max-length="64">String</type>      
-                    <not-null/>
-                    <edit/>
-                </column>	
-                <column name="message">
-                    <type max-length="255">String</type>      
-                    <not-null/>
-                    <edit/>
-                </column>	
-                <column name="sequence">
-                    <type>int</type>
-                    <not-null/>
-                </column>	
-                <column name="sourceClass">
-                    <type max-length="64">String</type>      
-                    <not-null/>
-                    <edit/>
-                </column>	
-                <column name="sourceMethod">
-                    <type max-length="32">String</type>      
-                    <not-null/>
-                    <edit/>
-                </column>	
-                <column name="threadID">
-                    <type>int</type>
-                    <not-null/>
-                </column>										
-                <column name="timeEntered">
-                    <type>Timestamp</type>
-                    <auto/>
-                    <not-null/>
-                </column>
-            </columns>
-            <methods>
-                <find name="all">			  
-                    <all/>
-                    <order-by>
-                        <column name="timeEntered"/>
-                    </order-by>
-                </find>
-                <delete>
-                    <all/>
-                </delete> 
-            </methods>
-        </table>
+       
     </tables>
 </database>
