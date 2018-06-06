@@ -34,11 +34,11 @@ public class ContactDaoImpl extends AbstractDaoImpl<Contact> implements ContactD
 
     private static final String TABLE_NAME = "contact";
 
-    protected static final String SELECT_COLUMNS = "contact_id, name, Uuid, clientType, license, general_information, phone, created_date, start_date, usageDate, end_date, address, streetaddress, city, zipcode, active";
+    protected static final String SELECT_COLUMNS = "contact_id, name, Uuid, client_type, license, general_information, phone, created_date, start_date, usage_date, end_date, address, streetaddress, city, zipcode, active";
 
     protected static final String PK_CONDITION = "contact_id=?";
 
-    private static final String SQL_INSERT = "INSERT INTO contact (name,Uuid,clientType,license,general_information,phone,created_date,start_date,usageDate,end_date,address,streetaddress,city,zipcode,active) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    private static final String SQL_INSERT = "INSERT INTO contact (name,Uuid,client_type,license,general_information,phone,created_date,start_date,usage_date,end_date,address,streetaddress,city,zipcode,active) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     public ContactDaoImpl( Connection conn ) {
         super( conn );
@@ -107,9 +107,9 @@ public class ContactDaoImpl extends AbstractDaoImpl<Contact> implements ContactD
             stmt.setString( 2, dto.getUuid() );
 
             if ( dto.getClientType() == null ) {
-                throw new DaoException("Value of column 'clientType' cannot be null");
+                throw new DaoException("Value of column 'client_type' cannot be null");
             }
-            checkMaxLength( "clientType", dto.getClientType(), 500 );
+            checkMaxLength( "client_type", dto.getClientType(), 500 );
             stmt.setString( 3, dto.getClientType() );
 
             if ( dto.getLicense() == null ) {
@@ -229,8 +229,8 @@ public class ContactDaoImpl extends AbstractDaoImpl<Contact> implements ContactD
                 sb.append( ", " );
             }
 
-            checkMaxLength( "clientType", dto.getClientType(), 500 );
-            sb.append( "clientType=?" );
+            checkMaxLength( "client_type", dto.getClientType(), 500 );
+            sb.append( "client_type=?" );
             params.add( dto.getClientType());
         }
 
@@ -273,7 +273,7 @@ public class ContactDaoImpl extends AbstractDaoImpl<Contact> implements ContactD
                 sb.append( ", " );
             }
 
-            sb.append( "usageDate=?" );
+            sb.append( "usage_date=?" );
             params.add( dto.getUsageDate());
         }
 

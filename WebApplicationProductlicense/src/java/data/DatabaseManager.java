@@ -20,7 +20,7 @@ Database: (create it using phpMyAdmin above)
           
     private final static Logger LOGGER = Logger.getLogger(DatabaseManager.class
             .getName());
-    // to the
+    // to the    sql3.freemysqlhosting.net/sql3241442 qAQVzm9Uiw
     // database
     private static String driverName = "com.mysql.jdbc.Driver";
 

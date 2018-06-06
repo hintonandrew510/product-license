@@ -214,7 +214,7 @@ public class ContactHelper {
             ContactDao dao = DaoFactory.createContactDao(connection);
            
             //com.mobile.dto.Contact[] services = dao.findAllByActive(Boolean.FALSE);
- com.mobile.dto.Contact[] services = dao.findAll();
+ com.mobile.dto.Contact[] services = dao.findAllByInActive();
  
             //Convert array to list and return the list
             List<com.mobile.dto.Contact> list = Arrays.asList(services);

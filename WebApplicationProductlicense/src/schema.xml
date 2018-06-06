@@ -24,7 +24,7 @@
                     <not-null/>
                     <edit/>
                 </column>
-                <column name="clientType">
+                <column name="client_type">
                     <type max-length="500">String</type>
                     <not-null/>
                     <edit/>
@@ -54,7 +54,7 @@
                     <not-null/>
                     <edit/>
                 </column>
-                <column name="usageDate">
+                <column name="usage_date">
                     <type>Timestamp</type>
                     <auto/>
                     <not-null/>
