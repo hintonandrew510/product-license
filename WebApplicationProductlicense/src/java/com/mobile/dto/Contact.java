@@ -40,6 +40,7 @@ public class Contact extends AbstractDto {
     private String address;
     private String streetaddress;
     private String city;
+    private String state;
     private String zipcode;
     private Boolean active;
 
@@ -193,6 +194,14 @@ public class Contact extends AbstractDto {
         this.city = _val;
     }
 
+    public String getState() {
+        return state;
+    }
+
+    public void setState( String _val) {
+        this.state = _val;
+    }
+
     public String getZipcode() {
         return zipcode;
     }
@@ -295,6 +304,11 @@ public class Contact extends AbstractDto {
         }
         else if ( _o.city == null || !city.equals( _o.city )) return false;
 
+        if ( state == null ) {
+            if ( _o.state != null ) return false;
+        }
+        else if ( _o.state == null || !state.equals( _o.state )) return false;
+
         if ( zipcode == null ) {
             if ( _o.zipcode != null ) return false;
         }
@@ -328,6 +342,7 @@ public class Contact extends AbstractDto {
         _ret = 29 * _ret + (address == null ? 0 : address.hashCode());
         _ret = 29 * _ret + (streetaddress == null ? 0 : streetaddress.hashCode());
         _ret = 29 * _ret + (city == null ? 0 : city.hashCode());
+        _ret = 29 * _ret + (state == null ? 0 : state.hashCode());
         _ret = 29 * _ret + (zipcode == null ? 0 : zipcode.hashCode());
         _ret = 29 * _ret + (active == null ? 0 : (active ? 1 : 0));
 
@@ -357,6 +372,7 @@ public class Contact extends AbstractDto {
         append( sb, "address", address );
         append( sb, "streetaddress", streetaddress );
         append( sb, "city", city );
+        append( sb, "state", state );
         append( sb, "zipcode", zipcode );
         append( sb, "active", active );
     }

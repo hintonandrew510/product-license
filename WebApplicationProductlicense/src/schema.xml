@@ -83,6 +83,12 @@
                     <edit/>
                 </column>
                 
+                <column name="state">
+                    <type max-length="250">String</type>
+                    <not-null/>
+                    <edit/>
+                </column>
+                
                 <column name="zipcode">
                     <type max-length="20">String</type>
                     <not-null/>

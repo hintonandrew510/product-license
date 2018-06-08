@@ -1,0 +1,115 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"   
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" template="masterTemplate.xhtml">
+
+    <ui:define name="top">
+        <h1>Add Department </h1>
+    </ui:define>
+
+    <ui:define name="content">
+
+        <p:panel header="Please fill in all fields and click Add">
+            <h:panelGrid columns="2" style="height: 96px; width:456px;">
+
+                <h:outputText value="Organization:" style="font-weight: bold"/>
+                <h:selectOneListbox  id="selectDepartment" required="true" 
+                                     style="width: 300px"
+                                     value="#{departmentBean.department.organizationId}">                               
+                    <f:selectItems var="organization" 
+                                   value="#{organizationBean.organizationList}" 
+                                   itemLabel="#{organization.name}" 
+                                   itemValue="#{organization.organizationId}"/>
+                </h:selectOneListbox>
+                <h:outputText value="Category"/>
+                <h:selectOneListbox required="true" value="#{departmentBean.department.categoryId}">                               
+                    <f:selectItems var="category" value="#{categoryBean.categoryList}" itemLabel="#{category.name}" itemValue="#{category.categoryId}"/>
+                </h:selectOneListbox> 
+               
+                <h:outputText value="Name:" style="font-weight: bold"/>
+                <h:inputText id="nameInputText" 
+                             required="true" 
+                             style="width: 300px"
+                             value="#{departmentBean.department.name}" 
+                             requiredMessage="Please enter name" 
+                             validatorMessage="Name must be greater than 3 and less than 40">
+                    <f:validateLength minimum="3" maximum="40" />
+                </h:inputText>                
+              
+                <h:outputText value="Phone Number:" style="font-weight: bold"/>
+                <p:inputMask mask="(999) 999-9999"  
+                             id="Phone_confirm"
+                             style="width: 300px;" 
+                             value="#{departmentBean.department.phone}" 
+                             required="true" 
+                             requiredMessage="Please enter your phone.">
+                </p:inputMask>
+            
+                <h:outputText value="Email:" style="font-weight: bold"/>
+                <h:inputText id="emailInputText" 
+                             required="true" 
+                             style="width: 300px;" 
+                             value="#{departmentBean.department.email}" 
+                             requiredMessage="Please enter email" 
+                             validatorMessage="Invalid email format">
+                    <f:validateLength minimum="6" maximum="50" />
+                    <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                </h:inputText>
+           
+                <h:outputLabel value="Location:" style="font-weight: bold"/>
+                <h:inputText id="locationInputText" 
+                             required="true" 
+                             style="width: 300px;"
+                             value="#{departmentBean.department.location}" 
+                             requiredMessage="Please enter address" 
+                             validatorMessage="Location must be greater than 3 and less than 60">
+                    <f:validateLength minimum="3" maximum="60" />                          
+                </h:inputText>                
+             
+                <h:outputText value="General Information:" style="font-weight: bold"/>
+                <h:inputTextarea id="generalInformationInputText" 
+                                 required="true" 
+                                 rows="15" 
+                                 cols="40"
+                                 value="#{departmentBean.department.generalInformation}" 
+                                 requiredMessage="Please enter general information">
+                </h:inputTextarea>
+               
+                <h:outputText value="Display On Menu " />
+                <p:selectBooleanCheckbox  id="SundayCheckbox" value="#{departmentBean.department.displayOnMenu}"/>
+
+                <h:outputText value="Icon:" style="font-weight: bold"/>
+                <p:panelGrid columns="2">
+                    <h:graphicImage id="IconImage"
+                                    value="#{departmentBean.iconForAddString}" height="48px"/>
+                    <p:fileUpload fileUploadListener="#{departmentBean.handleFileUploadDepartment}" 
+                                  mode="advanced"
+                                  auto="True" 
+                                  update="IconImage" 
+                                  sizeLimit="10000" 
+                                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />                                
+                </p:panelGrid>
+                <h:outputText value="Image One:"/>
+                <h:inputText size="50" id="imageInputTextOne" value="#{departmentBean.department.image1}" >
+
+
+                </h:inputText>
+                <h:outputText value="Image Two:"/>
+                <h:inputText size="50" id="imageInputTextTwo" value="#{departmentBean.department.image2}" >
+
+
+                </h:inputText>
+            </h:panelGrid>
+
+            <p:commandButton type="submit" value="Add" action="#{departmentBean.add}" />
+
+        </p:panel>
+
+    </ui:define>
+
+</ui:composition>
+
+
+

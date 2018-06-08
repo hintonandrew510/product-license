@@ -94,7 +94,88 @@
 
 
                 </div>
+            <div class="form-group-lg">
+                    <label for="Street">Street Address</label>
 
+                    <p:inputText style="font-size: 1em;" placeholder="Enter Street Address" styleClass="form-control input-lg"  id="Street"   value="#{editContactBean.contact.streetaddress}" required="true"  requiredMessage="Please enter your email address"/>
+
+                </div>
+                <div class="form-group-lg">
+                    <label for="city">City</label>
+
+                    <p:inputText style="font-size: 1em;" placeholder="Enter City" styleClass="form-control input-lg"  id="city"   value="#{editContactBean.contact.city}" required="true"  requiredMessage="Please enter your City"/>
+
+                </div>
+
+                <div class="form-group-lg">
+                    <label for="nameState">State</label>
+
+
+                    <h:selectOneMenu class="form-control selectbox-caret" required="true" requiredMessage="Enter State" value="#{editContactBean.contact.state}">  
+                        <f:selectItem itemValue="#{null}" itemLabel="Select State" />
+                        <f:selectItem itemValue ="AL" itemLabel = "Alabama" />
+                        <f:selectItem itemValue ="AK" itemLabel = "Alaska" />
+                        <f:selectItem itemValue ="AZ" itemLabel = "Arizona" />
+                        <f:selectItem itemValue ="AR" itemLabel = "Arkansas" />
+                        <f:selectItem itemValue ="CA" itemLabel = "California" />
+                        <f:selectItem itemValue ="CO" itemLabel = "Colorado" />
+                        <f:selectItem itemValue ="CT" itemLabel = "Connecticut" />
+                        <f:selectItem itemValue ="DE" itemLabel = "Delaware" />
+                        <f:selectItem itemValue ="DC" itemLabel = "District Of Columbia" />
+                        <f:selectItem itemValue ="FL" itemLabel = "Florida" />
+                        <f:selectItem itemValue ="GA" itemLabel = "Georgia" />
+                        <f:selectItem itemValue ="HI" itemLabel = "Hawaii" />
+                        <f:selectItem itemValue ="ID" itemLabel = "Idaho" />
+                        <f:selectItem itemValue ="IL" itemLabel = "Illinois" />
+                        <f:selectItem itemValue ="IN" itemLabel = "Indiana" />
+                        <f:selectItem itemValue ="IA" itemLabel = "Iowa" />
+                        <f:selectItem itemValue ="KS" itemLabel = "Kansas" />
+                        <f:selectItem itemValue ="KY" itemLabel = "Kentucky" />
+                        <f:selectItem itemValue ="LA" itemLabel = "Louisiana" />
+                        <f:selectItem itemValue ="ME" itemLabel = "Maine" />
+                        <f:selectItem itemValue ="MD" itemLabel = "Maryland" />
+                        <f:selectItem itemValue ="MA" itemLabel = "Massachusetts" />
+                        <f:selectItem itemValue ="MI" itemLabel = "Michigan" />
+                        <f:selectItem itemValue ="MN" itemLabel = "Minnesota" />
+                        <f:selectItem itemValue ="MS" itemLabel = "Mississippi" />
+                        <f:selectItem itemValue ="MO" itemLabel = "Missouri" />
+                        <f:selectItem itemValue ="MT" itemLabel = "Montana" />
+                        <f:selectItem itemValue ="NE" itemLabel = "Nebraska" />
+                        <f:selectItem itemValue ="NV" itemLabel = "Nevada" />
+                        <f:selectItem itemValue ="NH" itemLabel = "New Hampshire" />
+                        <f:selectItem itemValue ="NJ" itemLabel = "New Jersey" />
+                        <f:selectItem itemValue ="NM" itemLabel = "New Mexico" />
+                        <f:selectItem itemValue ="NY" itemLabel = "New York" />
+                        <f:selectItem itemValue ="NC" itemLabel = "North Carolina" />
+                        <f:selectItem itemValue ="ND" itemLabel = "North Dakota" />
+                        <f:selectItem itemValue ="OH" itemLabel = "Ohio" />
+                        <f:selectItem itemValue ="OK" itemLabel = "Oklahoma" />
+                        <f:selectItem itemValue ="OR" itemLabel = "Oregon" />
+                        <f:selectItem itemValue ="PA" itemLabel = "Pennsylvania" />
+                        <f:selectItem itemValue ="RI" itemLabel = "Rhode Island" />
+                        <f:selectItem itemValue ="SC" itemLabel = "South Carolina" />
+                        <f:selectItem itemValue ="SD" itemLabel = "South Dakota" />
+                        <f:selectItem itemValue ="TN" itemLabel = "Tennessee" />
+                        <f:selectItem itemValue ="TX" itemLabel = "Texas" />
+                        <f:selectItem itemValue ="UT" itemLabel = "Utah" />
+                        <f:selectItem itemValue ="VT" itemLabel = "Vermont" />
+                        <f:selectItem itemValue ="VA" itemLabel = "Virginia" />
+                        <f:selectItem itemValue ="WA" itemLabel = "Washington" />
+                        <f:selectItem itemValue ="WV" itemLabel = "West Virginia" />
+                        <f:selectItem itemValue ="WI" itemLabel = "Wisconsin" />
+                        <f:selectItem itemValue ="WY" itemLabel = "Wyoming" />
+
+                    </h:selectOneMenu>  
+
+
+
+                </div>
+                <div class="form-group-lg">
+                    <label for="zip">zip</label>
+
+                    <p:inputText style="font-size: 1em;" placeholder="Enter Zip Code" styleClass="form-control input-lg"  id="zip"   value="#{editContactBean.contact.zipcode}" required="true"  requiredMessage="Please enter your zip code"/>
+
+                </div>
 
 
                 <div class="form-group form-group-lg">

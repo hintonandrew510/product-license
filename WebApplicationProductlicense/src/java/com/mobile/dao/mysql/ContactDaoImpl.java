@@ -34,11 +34,11 @@ public class ContactDaoImpl extends AbstractDaoImpl<Contact> implements ContactD
 
     private static final String TABLE_NAME = "contact";
 
-    protected static final String SELECT_COLUMNS = "contact_id, name, Uuid, client_type, license, general_information, phone, created_date, start_date, usage_date, end_date, address, streetaddress, city, zipcode, active";
+    protected static final String SELECT_COLUMNS = "contact_id, name, Uuid, client_type, license, general_information, phone, created_date, start_date, usage_date, end_date, address, streetaddress, city, state, zipcode, active";
 
     protected static final String PK_CONDITION = "contact_id=?";
 
-    private static final String SQL_INSERT = "INSERT INTO contact (name,Uuid,client_type,license,general_information,phone,created_date,start_date,usage_date,end_date,address,streetaddress,city,zipcode,active) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    private static final String SQL_INSERT = "INSERT INTO contact (name,Uuid,client_type,license,general_information,phone,created_date,start_date,usage_date,end_date,address,streetaddress,city,state,zipcode,active) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     public ContactDaoImpl( Connection conn ) {
         super( conn );
@@ -167,17 +167,23 @@ public class ContactDaoImpl extends AbstractDaoImpl<Contact> implements ContactD
             checkMaxLength( "city", dto.getCity(), 250 );
             stmt.setString( 13, dto.getCity() );
 
+            if ( dto.getState() == null ) {
+                throw new DaoException("Value of column 'state' cannot be null");
+            }
+            checkMaxLength( "state", dto.getState(), 250 );
+            stmt.setString( 14, dto.getState() );
+
             if ( dto.getZipcode() == null ) {
                 throw new DaoException("Value of column 'zipcode' cannot be null");
             }
             checkMaxLength( "zipcode", dto.getZipcode(), 20 );
-            stmt.setString( 14, dto.getZipcode() );
+            stmt.setString( 15, dto.getZipcode() );
 
             if ( dto.getActive() == null ) {
-                stmt.setNull( 15, Types.TINYINT );
+                stmt.setNull( 16, Types.TINYINT );
             }
             else {
-                stmt.setByte( 15, dto.getActive() ? ((byte)1) : ((byte)0) );
+                stmt.setByte( 16, dto.getActive() ? ((byte)1) : ((byte)0) );
             }
 
             int n = stmt.executeUpdate();
@@ -316,6 +322,16 @@ public class ContactDaoImpl extends AbstractDaoImpl<Contact> implements ContactD
             params.add( dto.getCity());
         }
 
+        if ( dto.getState() != null ) {
+            if (sb.length() > 0) {
+                sb.append( ", " );
+            }
+
+            checkMaxLength( "state", dto.getState(), 250 );
+            sb.append( "state=?" );
+            params.add( dto.getState());
+        }
+
         if ( dto.getZipcode() != null ) {
             if (sb.length() > 0) {
                 sb.append( ", " );
@@ -378,8 +394,9 @@ public class ContactDaoImpl extends AbstractDaoImpl<Contact> implements ContactD
         dto.setAddress( rs.getString( 12 ));
         dto.setStreetaddress( rs.getString( 13 ));
         dto.setCity( rs.getString( 14 ));
-        dto.setZipcode( rs.getString( 15 ));
-        dto.setActive( rs.getBoolean( 16 ) ? Boolean.TRUE : Boolean.FALSE );
+        dto.setState( rs.getString( 15 ));
+        dto.setZipcode( rs.getString( 16 ));
+        dto.setActive( rs.getBoolean( 17 ) ? Boolean.TRUE : Boolean.FALSE );
 
         if ( rs.wasNull()) {
             dto.setActive( null );

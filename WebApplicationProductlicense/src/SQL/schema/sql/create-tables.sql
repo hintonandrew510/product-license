@@ -40,6 +40,7 @@ CREATE TABLE contact (
 	address varchar(250) NOT NULL,
 	streetaddress varchar(250) NOT NULL,
 	city varchar(250) NOT NULL,
+	state varchar(250) NOT NULL,
 	zipcode varchar(20) NOT NULL,
 	active tinyint
 	, PRIMARY KEY(contact_id )
