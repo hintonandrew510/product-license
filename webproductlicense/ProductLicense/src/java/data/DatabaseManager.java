@@ -28,15 +28,27 @@ Database: (create it using phpMyAdmin above)
         java.lang.Class.forName(driverName);
         StringBuilder builder = new StringBuilder();
         Connection connection = null;
-        
+        connection = DriverManager.getConnection(databaseURL,
+                   "root", "OSCaki79649");
+        //connection = DriverManager.getConnection(databaseURLTest,
+                   // "sql3241442", "qAQVzm9Uiw");
         
        /*prod connection = DriverManager.getConnection(databaseURL,
                     "root", "OSCaki79649");
+        
+        
+        To change payment method for the license manager application goto https://app.whelastic.net/
+
+
+logon with user name =hintonandrew510@gmail.com
+password = mike123
+        
+   phpadmin     https://node71581-env-9265129.whelastic.net/
         */
         
          
-        connection = DriverManager.getConnection(databaseURLTest,
-                    "sql3241442", "qAQVzm9Uiw");
+        /* test connection = DriverManager.getConnection(databaseURLTest,
+                    "sql3241442", "qAQVzm9Uiw");*/
         
         //sql3.freemysqlhosting.net	sql3241442	sql3241442
         /*

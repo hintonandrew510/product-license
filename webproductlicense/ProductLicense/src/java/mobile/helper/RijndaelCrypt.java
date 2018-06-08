@@ -94,8 +94,8 @@ public class RijndaelCrypt {
           System.err.println("The input data but the data is not padded properly." +e.getMessage());
             return null;
         }               
-       //String test =  Base64.getEncoder().encodeToString(encryptedData);
-       String test =  Base64.encodeBase64String(encryptedData);
+       String test =  Base64.encodeBase64(encryptedData).toString();
+       //String test =  Base64.encodeBase64String(encryptedData);
         return test;
          
     }

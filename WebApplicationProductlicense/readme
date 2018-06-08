@@ -1,0 +1,25 @@
+ /*prod connection = DriverManager.getConnection(databaseURL,
+                    "root", "OSCaki79649");
+        
+        
+        To change payment method for the license manager application goto https://app.whelastic.net/
+
+
+logon with user name =hintonandrew510@gmail.com
+password = mike123
+        
+   phpadmin     https://node71581-env-9265129.whelastic.net/
+        */
+        
+         
+        /* test connection = DriverManager.getConnection(databaseURLTest,
+                    "sql3241442", "qAQVzm9Uiw");*/
+        
+        //sql3.freemysqlhosting.net	sql3241442	sql3241442
+        /*
+        sServer: sql3.freemysqlhosting.net
+        Name:    sql3241442
+       Username: sql3241442
+        Password: qAQVzm9Uiw
+        Port number: 3306
+        */
