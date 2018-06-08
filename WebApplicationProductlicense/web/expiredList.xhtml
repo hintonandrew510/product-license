@@ -48,15 +48,20 @@
                 <div class="container" style="font-size: 3em;">
                     <br/>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <a class="btn btn-primary btn-lg btn-block btn-huge"  href="mailto:#{contact.address}#{contactUtilBean.getEmailMessage(contact)}"> Email License key to #{contact.name}</a> 
                         </div>
-                        <div class="col-md-4">
+                                   <div class="col-md-3">
+                            <h:link styleClass="btn btn-primary btn-lg btn-block btn-huge" style="color:white;" value="Address: #{contact.city}-#{contact.state}" outcome="editContact.xhtml">
+                                <f:param name="id" value="#{contact.contactId}" />
+                            </h:link> 
+                        </div>
+                        <div class="col-md-3">
                             <h:link styleClass="btn btn-primary btn-lg btn-block btn-huge" style="color:white;" value="Change Days Left: #{contactUtilBean.getDaysLeft(contact)}" outcome="editContact.xhtml">
                                 <f:param name="id" value="#{contact.contactId}" />
                             </h:link> 
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <a class="btn btn-primary btn-lg btn-block btn-huge"  style="color:white;" href="tel:#{contact.phone}">
                                 Call #{contactUtilBean.getFormattedPhone(contact)}
                             </a>
