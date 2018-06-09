@@ -1,0 +1,142 @@
+	<database xmlns="http://www.spoledge.com/audao" version="1.0">
+    <config>
+        <factory>
+            <create-params default="false" direct="true"/>
+        </factory>
+    </config>
+    <tables>
+        <table name="contact">
+            <edit-mode>row</edit-mode>
+            <auto-find/>
+            <columns>
+                <column name="contact_id">
+                    <type>int</type>
+                    <auto/>
+                    <pk/>
+                </column>
+                <column name="name">
+                    <type max-length="250">String</type>
+                    <not-null/>
+                    <edit/>
+                </column>
+                <column name="Uuid">
+                    <type max-length="500">String</type>
+                    <not-null/>
+                    <edit/>
+                </column>
+                <column name="client_type">
+                    <type max-length="500">String</type>
+                    <not-null/>
+                    <edit/>
+                </column>
+                <column name="license">
+                    <type max-length="3000">String</type>
+                    <not-null/>
+                    
+                </column>
+                <column name="general_information">
+                    <type max-length="3000">String</type>
+                    <not-null/>
+                    <edit/>
+                </column>
+                <column name="phone">
+                    <type max-length="250">String</type>
+                    <edit/>
+                </column>
+                <column name="created_date">
+                    <type>Timestamp</type>
+                    <auto/>
+                    <not-null/>
+                </column>
+                <column name="start_date">
+                    <type>Timestamp</type>
+                    <auto/>
+                    <not-null/>
+                    <edit/>
+                </column>
+                <column name="usage_date">
+                    <type>Timestamp</type>
+                    <auto/>
+                    <not-null/>
+                    <edit/>
+                </column>
+                <column name="end_date">
+                    <type>Timestamp</type>
+                    <auto/>
+                    <not-null/>
+                    <edit/>
+                </column>
+                <column name="address">
+                    <type max-length="250">String</type>
+                    <not-null/>
+                    <edit/>
+                </column>
+                <column name="streetaddress">
+                    <type max-length="250">String</type>
+                    <not-null/>
+                    <edit/>
+                </column>
+                
+                <column name="city">
+                    <type max-length="250">String</type>
+                    <not-null/>
+                    <edit/>
+                </column>
+                
+                <column name="state">
+                    <type max-length="250">String</type>
+                    <not-null/>
+                    <edit/>
+                </column>
+                
+                <column name="zipcode">
+                    <type max-length="20">String</type>
+                    <not-null/>
+                    <edit/>
+                </column>
+               
+                <column name="active">
+                    <type>boolean</type>
+                    <edit/>
+                </column>
+            </columns>
+            <methods>
+                <find name="all">			  
+                    <all/>
+                    <order-by>
+                        <column name="name"/>
+                    </order-by>
+                </find>
+               
+                
+                <find name="allByInActive">
+                    <comment>Finds inactive</comment>
+                    
+                    <condition>
+                        <query>active IS false</query>
+                    </condition>
+     
+                </find>         
+                
+                <find name="UUid">
+                    <condition>
+                        <query>Uuid = ? ></query>
+                        <params>
+                            <column name="Uuid"/>
+                        </params>
+                    </condition>
+                </find> 
+               
+               
+               
+               
+               
+                <delete>
+                    <pk/>
+                </delete>
+            </methods>
+        </table>
+
+       
+    </tables>
+</database>
