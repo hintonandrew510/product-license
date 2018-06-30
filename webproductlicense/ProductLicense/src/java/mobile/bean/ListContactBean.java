@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -19,22 +21,23 @@ import javax.faces.bean.ManagedBean;
  */
 @ManagedBean
 public class ListContactBean implements Serializable {
-     
+
     private final static Logger LOGGER = Logger.getLogger(ListContactBean.class
             .getName());
     private List<Contact> contactList;
     private List<Contact> inActiveContactList;
 
     public List<Contact> getInActiveContactList() {
-         
+        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String url = req.getRequestURL().toString();
         if (inActiveContactList == null || inActiveContactList.size() < 1) {
-                  inActiveContactList = ContactHelper.findAllInactive();
-  
+            inActiveContactList = ContactHelper.findAllInactive();
+
         }
         if (inActiveContactList != null) {
             LOGGER.info("Found records [" + inActiveContactList.size() + "]");
         } else {
-              LOGGER.info("Found not records "); 
+            LOGGER.info("Found not records ");
         }
         return inActiveContactList;
     }
@@ -49,14 +52,14 @@ public class ListContactBean implements Serializable {
             return expiredContactList;
         }
         ContactUtilBean util = new ContactUtilBean();
-        
+
         List<Contact> fullList = this.getContactList();
-        if (fullList  != null) {
+        if (fullList != null) {
             //loop thru list and fix days left
-            for(Contact contact : fullList) {
+            for (Contact contact : fullList) {
                 long dayLeft = util.getDaysLeft(contact);
                 if (dayLeft < 0) {
-                   expiredContactList.add(contact);
+                    expiredContactList.add(contact);
                 }
             }
         }
@@ -67,20 +70,20 @@ public class ListContactBean implements Serializable {
         this.expiredContactList = expiredContactList;
     }
 
-  
     public List<Contact> getContactList() {
+      HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String url = req.getRequestURL().toString();
+ 
         contactList = ContactHelper.findAll();
         if (contactList != null) {
             LOGGER.info("Found records [" + contactList.size() + "]");
         } else {
-              LOGGER.info("Found not records "); 
+            LOGGER.info("Found not records ");
         }
-            
+
         return contactList;
     }
 
-    
-   
     public void setContactList(List<Contact> contactList) {
         this.contactList = contactList;
     }
