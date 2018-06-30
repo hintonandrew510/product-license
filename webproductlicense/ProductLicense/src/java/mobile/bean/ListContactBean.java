@@ -6,6 +6,7 @@
 package mobile.bean;
 
 import com.mobile.dto.Contact;
+import data.DatabaseManager;
 import data.helper.ContactHelper;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -27,16 +28,24 @@ public class ListContactBean implements Serializable {
             .getName());
     private List<Contact> contactList;
     private List<Contact> inActiveContactList;
-    
+
     @PostConstruct
-     public void init(){
-         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    public void init() {
+        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String url = req.getRequestURL().toString();
+        boolean production = true;
+        if (url.contains("local")) {
+            production = false;
+        }
+        if (url.contains("127")) {
+            production = false;
+        }
+        DatabaseManager.setIsProduction(production);
+
     }
 
-    
     public List<Contact> getInActiveContactList() {
-        
+
         if (inActiveContactList == null || inActiveContactList.size() < 1) {
             inActiveContactList = ContactHelper.findAllInactive();
 
@@ -78,9 +87,9 @@ public class ListContactBean implements Serializable {
     }
 
     public List<Contact> getContactList() {
-      HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String url = req.getRequestURL().toString();
- 
+
         contactList = ContactHelper.findAll();
         if (contactList != null) {
             LOGGER.info("Found records [" + contactList.size() + "]");

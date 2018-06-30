@@ -17,19 +17,37 @@ Database: (create it using phpMyAdmin above)
     // jbossewsalex
 	  private static String databaseURL = "jdbc:mysql://node71581-env-9265129.whelastic.net/license";// address
           private static String databaseURLTest = "jdbc:mysql://sql3.freemysqlhosting.net/sql3241442";// address
+          private static String localDatabaseURL = "jdbc:derby://localhost:1527/sample";
           
+          private static boolean isProduction = true;
+
+    public static boolean isIsProduction() {
+        return isProduction;
+    }
+
+    public static void setIsProduction(boolean isProduction) {
+        DatabaseManager.isProduction = isProduction;
+    }
     private final static Logger LOGGER = Logger.getLogger(DatabaseManager.class
             .getName());
     // to the    sql3.freemysqlhosting.net/sql3241442 qAQVzm9Uiw
     // database
     private static String driverName = "com.mysql.jdbc.Driver";
+     private static String localDriverName = "com.mysql.jdbc.Driver";
 
     public static Connection getConnection() throws Exception {
-        java.lang.Class.forName(driverName);
+       
         StringBuilder builder = new StringBuilder();
         Connection connection = null;
-        connection = DriverManager.getConnection(databaseURL,
+        if (isProduction) {
+             java.lang.Class.forName(driverName);
+             connection = DriverManager.getConnection(databaseURL,
                    "root", "OSCaki79649");
+        } else {
+             DriverManager.registerDriver(new org.apache.derby.jdbc.EmbeddedDriver());
+             connection = DriverManager.getConnection(localDatabaseURL);
+        }
+       
         //connection = DriverManager.getConnection(databaseURLTest,
                    // "sql3241442", "qAQVzm9Uiw");
         
