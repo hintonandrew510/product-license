@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -26,10 +27,16 @@ public class ListContactBean implements Serializable {
             .getName());
     private List<Contact> contactList;
     private List<Contact> inActiveContactList;
-
-    public List<Contact> getInActiveContactList() {
-        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    
+    @PostConstruct
+     public void init(){
+         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String url = req.getRequestURL().toString();
+    }
+
+    
+    public List<Contact> getInActiveContactList() {
+        
         if (inActiveContactList == null || inActiveContactList.size() < 1) {
             inActiveContactList = ContactHelper.findAllInactive();
 
