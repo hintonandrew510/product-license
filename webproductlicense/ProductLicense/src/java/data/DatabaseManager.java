@@ -17,7 +17,7 @@ Database: (create it using phpMyAdmin above)
     // jbossewsalex
 	  private static String databaseURL = "jdbc:mysql://node71581-env-9265129.whelastic.net/license";// address
           private static String databaseURLTest = "jdbc:mysql://sql3.freemysqlhosting.net/sql3241442";// address
-          private static String localDatabaseURL = "jdbc:derby://localhost:1527/sample";
+          private static String localDatabaseURL = "jdbc:derby://localhost:8989/sample";
           
           private static boolean isProduction = true;
 
@@ -44,7 +44,7 @@ Database: (create it using phpMyAdmin above)
              connection = DriverManager.getConnection(databaseURL,
                    "root", "OSCaki79649");
         } else {
-             DriverManager.registerDriver(new org.apache.derby.jdbc.EmbeddedDriver());
+             java.lang.Class.forName("org.apache.derby.jdbc.ClientDriver");
              connection = DriverManager.getConnection(localDatabaseURL);
         }
        
@@ -75,6 +75,8 @@ password = mike123
        Username: sql3241442
         Password: qAQVzm9Uiw
         Port number: 3306
+        
+        jdbc:derby://localhost:1527/sample
         */
       
 
