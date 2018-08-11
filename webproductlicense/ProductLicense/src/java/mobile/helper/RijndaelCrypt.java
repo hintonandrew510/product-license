@@ -94,17 +94,21 @@ public class RijndaelCrypt {
           System.err.println("The input data but the data is not padded properly." +e.getMessage());
             return null;
         }               
-       String test =  Base64.encodeBase64(encryptedData).toString();
-       //String test =  Base64.encodeBase64String(encryptedData);
+       //String test =  Base64.encodeBase64(encryptedData).toString();
+       System.out.println(Base64.class.getProtectionDomain().getCodeSource().getLocation());
+       String test =  Base64.encodeBase64String(encryptedData);
+       
         return test;
          
     }
      public static void main(String args[]) {
          String key = "Bar12345Bar12345";
          RijndaelCrypt crypt = new RijndaelCrypt(key);
-         String encrypt = crypt.encrypt("test".getBytes());
-         String decr = crypt.decrypt(encrypt);
-         //DmmMF17AaibIBBfXH/gPEw==
+         String encrypt = crypt.encrypt("{\"enddate\":20191010,\"startdate\":20171004,\"uuid\":\"0e9393e1-10ce-42dc-98c4-a4165a1004ac\"}".getBytes());
+         String decr = crypt.decrypt("Xfi0v8pn9XhdVu1amsToEdU2Ef7+YAlLUBwfZRRtWGFYN93K4+JLspmJkFeNIGVX5greMOgqVP/4BJDTMg0qCkdGR8kAcK7ck4ylRgZXdngwArae/DCifgJhoQJkuQX9");
+         
+
+//DmmMF17AaibIBBfXH/gPEw==
          //DmmMF17AaibIBBfXH/gPEw==
          System.out.println(encrypt);
          System.out.println(decr);

@@ -8,24 +8,13 @@ package mobile.bean;
 import com.mobile.dto.Contact;
 import data.helper.ContactHelper;
 import java.io.Serializable;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
-import mobile.helper.Encryptor;
-import static mobile.helper.Encryptor.decrypt;
-import static mobile.helper.Encryptor.encrypt;
-import org.json.JSONObject;
 
 /**
  *

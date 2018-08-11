@@ -18,7 +18,7 @@ Database: (create it using phpMyAdmin above)
 	  private static String databaseURL = "jdbc:mysql://node71581-env-9265129.whelastic.net/license";// address
           private static String databaseURLTest = "jdbc:mysql://sql3.freemysqlhosting.net/sql3241442";// address
           private static String localDatabaseURL = "jdbc:derby://localhost:8989/sample";
-          
+          private static String embeddedURL="jdbc:derby:sample";
           private static boolean isProduction = true;
 
     public static boolean isIsProduction() {
@@ -44,8 +44,10 @@ Database: (create it using phpMyAdmin above)
              connection = DriverManager.getConnection(databaseURL,
                    "root", "OSCaki79649");
         } else {
-             java.lang.Class.forName("org.apache.derby.jdbc.ClientDriver");
-             connection = DriverManager.getConnection(localDatabaseURL);
+             //java.lang.Class.forName("org.apache.derby.jdbc.ClientDriver");
+             java.lang.Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+           
+             connection = DriverManager.getConnection(embeddedURL);
         }
        
         //connection = DriverManager.getConnection(databaseURLTest,

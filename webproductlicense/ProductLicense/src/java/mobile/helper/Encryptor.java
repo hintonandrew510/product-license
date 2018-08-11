@@ -66,7 +66,10 @@ byte[] original = cipher.doFinal(Base64.decodeBase64(encrypted.getBytes()));
         String key = "Bar12345Bar12345"; // 128 bit key
         String initVector = "RandomInitVector"; // 16 bytes IV
 System.out.println(decrypt(key,initVector,"RfYSZKaaB3S9BMWbXDDNp5S1a8Zl7AZLNFxLGUtMVZEPICEotCXIaLGvuT8cxxJYV5JeAGoiehI+JTAI1YWUVG7xT8RLdv2TsZkDBUhARnR7gWs17Ls3y+iIWALrwZ8RGGy3VqDKYcBvkBwTi14UMw=="));
-        System.out.println(decrypt(key, initVector,
+   
+//lePrqW6fNiIH5vuZhCs0Gw0cs8gK903XFl+8KYhtKFsQwX98MIajAm+MwKv3SZMovGNRn7KYWMknqVVJLBIq6W/u6VEBjvUc+GMBt74q+QyHICczdJVaz7waInr6xy5d
+
+System.out.println(decrypt(key, initVector,
                 encrypt(key, initVector, "Hello World")));
     }
 }
