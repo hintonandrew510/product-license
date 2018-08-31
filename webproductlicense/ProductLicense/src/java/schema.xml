@@ -32,6 +32,7 @@
                 <column name="license">
                     <type max-length="3000">String</type>
                     <not-null/>
+                     <edit/>
                     
                 </column>
                 <column name="general_information">

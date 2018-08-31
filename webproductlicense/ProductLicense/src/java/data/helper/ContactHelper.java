@@ -78,6 +78,7 @@ public class ContactHelper {
             Integer primaryKey = null;
 
             primaryKey = dao.insert(contact);
+            
 
             if (primaryKey > 0) {
                 contact.setContactId(primaryKey);
@@ -127,6 +128,7 @@ public class ContactHelper {
             if (dao.update(contact.getContactId().intValue(), contact)) {
                 LOGGER.log(Level.OFF, "updated database");
                 LOGGER.log(Level.OFF, "ended update ");
+                
                 return contact;
             } else {
                 LOGGER.log(Level.SEVERE, "Cannot update Service");
@@ -174,6 +176,7 @@ public class ContactHelper {
 
                 LOGGER.log(Level.OFF, "deleted service");
                 LOGGER.log(Level.OFF, "ended delete ");
+               
                 return null;
             } else {
                 LOGGER.log(Level.SEVERE, "Cannot delete Service");

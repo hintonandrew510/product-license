@@ -14,6 +14,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import mobile.helper.RijndaelCrypt;
 
 /**
  *
@@ -26,6 +27,7 @@ public class ConfirmationContactBean implements Serializable {
             .getName());
     private Contact contact;
             private String emailMessage;
+           
 
     public String getEmailMessage() {
         StringBuffer buffer = new StringBuffer();
@@ -42,6 +44,13 @@ public class ConfirmationContactBean implements Serializable {
         
         emailMessage = buffer.toString();
         return emailMessage;
+    }
+    
+    public String getDecryptLicense() {
+        String key = "Bar12345Bar12345";
+         RijndaelCrypt crypt = new RijndaelCrypt(key);
+        String decrypt = crypt.decrypt(contact.getLicense());
+        return decrypt;
     }
 
 

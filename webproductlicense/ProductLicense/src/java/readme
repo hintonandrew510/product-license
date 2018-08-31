@@ -1,0 +1,14 @@
+o change payment method for the license manager application goto https://app.whelastic.net/
+
+
+logon with user name =hintonandrew510@gmail.com
+password = mike123
+
+
+local database root ahinton123
+
+
+remote database "root", "OSCaki79649"
+
+mysql com.mobile /Users/andrewhinton/Documents/GitHub/product-license/webproductlicense/ProductLicense/src/java/schema.xml /Users/andrewhinton/Documents/GitHub/product-license/webproductlicense/ProductLicense/src/java/schema.zip
+

@@ -240,6 +240,16 @@ public class ContactDaoImpl extends AbstractDaoImpl<Contact> implements ContactD
             params.add( dto.getClientType());
         }
 
+        if ( dto.getLicense() != null ) {
+            if (sb.length() > 0) {
+                sb.append( ", " );
+            }
+
+            checkMaxLength( "license", dto.getLicense(), 3000 );
+            sb.append( "license=?" );
+            params.add( dto.getLicense());
+        }
+
         if ( dto.getGeneralInformation() != null ) {
             if (sb.length() > 0) {
                 sb.append( ", " );

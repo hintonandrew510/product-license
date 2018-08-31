@@ -104,8 +104,8 @@ public class RijndaelCrypt {
      public static void main(String args[]) {
          String key = "Bar12345Bar12345";
          RijndaelCrypt crypt = new RijndaelCrypt(key);
-         String encrypt = crypt.encrypt("{\"enddate\":20191010,\"startdate\":20171004,\"uuid\":\"0e9393e1-10ce-42dc-98c4-a4165a1004ac\"}".getBytes());
-         String decr = crypt.decrypt("Xfi0v8pn9XhdVu1amsToEdU2Ef7+YAlLUBwfZRRtWGFYN93K4+JLspmJkFeNIGVX5greMOgqVP/4BJDTMg0qCkdGR8kAcK7ck4ylRgZXdngwArae/DCifgJhoQJkuQX9");
+         String encrypt = crypt.encrypt("{\"enddate\":\"20200513\",\"startdate\":\"20171003\",\"uuid\":\"a2772b00-b162-450b-9f50-c31a9a371ec3\"}".getBytes());
+         String decr = crypt.decrypt("ASUE19R0uJUQVfX4RRP7IwYS3mVBtYi9NziUswC33pmdkTxW188wJvRmMsAxcUDpZUf1mBqb3cxBS69u9Wh2hPficESwhMHAM520lZ0Wi0vr2pbCV6txpRntgEHTkZSG");
          
 
 //DmmMF17AaibIBBfXH/gPEw==

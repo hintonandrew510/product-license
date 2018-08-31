@@ -28,7 +28,7 @@ public class ContactBaseBean {
     private final static Logger LOGGER = Logger.getLogger(ContactBaseBean.class
             .getName());
     
-    public long convertDateToMilliseconds(Date date) {
+    public String convertDateToMilliseconds(Date date) {
         SimpleDateFormat xxxFormat = new SimpleDateFormat("yyyy-mm-dd");
         String dateStr = xxxFormat.format(date);
         String yearStr = dateStr.substring(0, 4);
@@ -54,18 +54,10 @@ public class ContactBaseBean {
             yearMonthDay.append(dayofMonthInt);
         }
         
-        Calendar calNewYork = Calendar.getInstance();
-        calNewYork.setTimeZone(TimeZone.getTimeZone("America/New_York"));
-        calNewYork.set(Calendar.YEAR, endYearInt);
-        calNewYork.set(Calendar.MONTH, endMonthInt - 1);
-        calNewYork.set(Calendar.DAY_OF_MONTH, dayofMonthInt);
         
-        calNewYork.set(Calendar.MINUTE, 1);
-        calNewYork.set(Calendar.HOUR_OF_DAY, 12);
-        calNewYork.set(Calendar.SECOND, 1);
         
-        long mill = Long.parseLong(yearMonthDay.toString());
-        return mill;
+       // long mill = Long.parseLong(yearMonthDay.toString());
+        return yearMonthDay.toString();
     }
     
     public ContactValidate validate(Contact contact, HttpServletRequest request) {
@@ -124,14 +116,35 @@ public class ContactBaseBean {
             //add encryption
             JSONObject json = new JSONObject();
             //   this.contact.setAddress(exampleInputEmail);
-            long startDayMills = this.convertDateToMilliseconds(contact.getStartDate());
+            String startDayMills = this.convertDateToMilliseconds(contact.getStartDate());
             
-            long endDayMills = this.convertDateToMilliseconds(contact.getEndDate());
+            
+            StringBuilder builder = new StringBuilder();
+            //{\"enddate\":20200513,\"startdate\":20171003,\"uuid\":\"a2772b00-b162-450b-9f50-c31a9a371ec3\"}
+            
+            String endDayMills = this.convertDateToMilliseconds(contact.getEndDate());
+           builder.append("{\"enddate\":");
+           builder.append("\"");
+            builder.append(endDayMills);
+            builder.append("\"");
+           builder.append(",\"startdate\":");
+           builder.append("\"");
+            builder.append(startDayMills);
+            builder.append("\"");
+             builder.append(",\"uuid\":");
+             builder.append("\"");
+            builder.append(contact.getUuid());
+            builder.append("\"}");
             json.put("startdate", startDayMills);
             json.put("enddate", endDayMills);
             json.put("uuid", contact.getUuid());
+            //{"enddate":20200513,"startdate":20171003,"uuid":"0e9393e1-10ce-42dc-98c4-a4165a1004ac"}
+            //{"enddate":20200513,"startdate":20171003,"uuid":"a2772b00-b162-450b-9f50-c31a9a371ec3"}
+           String test = json.toString();
+           //{"enddate":"20200513","startdate":"20171003","uuid":"a2772b00-b162-450b-9f50-c31a9a371ec3"}
+           String finalJSON = builder.toString();
             RijndaelCrypt rijndaelCrypt = new RijndaelCrypt(key);
-            String encrypt = rijndaelCrypt.encrypt(json.toString().getBytes());
+            String encrypt = rijndaelCrypt.encrypt(test.getBytes());
             contact.setLicense(encrypt);
             contactValidate.setContact(contact);
             
