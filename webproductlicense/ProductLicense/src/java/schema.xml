@@ -14,6 +14,12 @@
                     <auto/>
                     <pk/>
                 </column>
+                                <column name="password">
+                    <type max-length="250">String</type>
+                   
+                    <edit/>
+                </column>
+              
                 <column name="name">
                     <type max-length="250">String</type>
                     <not-null/>

@@ -27,6 +27,7 @@ public class Contact extends AbstractDto {
     ////////////////////////////////////////////////////////////////////////////
 
     private Integer contactId;
+    private String password;
     private String name;
     private String uuid;
     private String clientType;
@@ -44,6 +45,7 @@ public class Contact extends AbstractDto {
     private String zipcode;
     private Boolean active;
 
+    private boolean isPasswordModified;
     private boolean isPhoneModified;
     private boolean isActiveModified;
 
@@ -67,6 +69,19 @@ public class Contact extends AbstractDto {
 
     public void setContactId( Integer _val) {
         this.contactId = _val;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword( String _val) {
+        this.password = _val;
+        this.isPasswordModified = true;
+    }
+
+    public boolean isPasswordModified() {
+        return isPasswordModified;
     }
 
     public String getName() {
@@ -239,6 +254,11 @@ public class Contact extends AbstractDto {
         }
         else if ( _o.contactId == null || contactId.intValue() != _o.contactId.intValue()) return false;
 
+        if ( password == null ) {
+            if ( _o.password != null ) return false;
+        }
+        else if ( _o.password == null || !password.equals( _o.password )) return false;
+
         if ( name == null ) {
             if ( _o.name != null ) return false;
         }
@@ -329,6 +349,7 @@ public class Contact extends AbstractDto {
     public int hashCode() {
         int _ret = -1678787584; // = "Contact".hashCode()
         _ret += contactId == null ? 0 : contactId;
+        _ret = 29 * _ret + (password == null ? 0 : password.hashCode());
         _ret = 29 * _ret + (name == null ? 0 : name.hashCode());
         _ret = 29 * _ret + (uuid == null ? 0 : uuid.hashCode());
         _ret = 29 * _ret + (clientType == null ? 0 : clientType.hashCode());
@@ -359,6 +380,7 @@ public class Contact extends AbstractDto {
      */
     protected void contentToString(StringBuffer sb) {
         append( sb, "contactId", contactId );
+        append( sb, "password", password );
         append( sb, "name", name );
         append( sb, "uuid", uuid );
         append( sb, "clientType", clientType );

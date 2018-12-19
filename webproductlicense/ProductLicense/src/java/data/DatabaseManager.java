@@ -21,7 +21,7 @@ Database: (create it using phpMyAdmin above)
           private static String localDatabaseURL = "jdbc:mysql://localhost:3306/license?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC";
           private static String embeddedURL="jdbc:derby:sample";
           private static boolean isProduction = true;
-
+//https://node71581-env-9265129.whelastic.net/db_export.php?db=license
     public static boolean isIsProduction() {
         return isProduction;
     }
@@ -42,8 +42,10 @@ Database: (create it using phpMyAdmin above)
         Connection connection = null;
         if (isProduction) {
              java.lang.Class.forName(driverName);
-             connection = DriverManager.getConnection(databaseURL,
-                   "root", "OSCaki79649");
+            // connection = DriverManager.getConnection(databaseURL,
+             //      "root", "OSCaki79649");
+             connection = DriverManager.getConnection(localDatabaseURL,
+                   "root", "password");
         } else {
              //java.lang.Class.forName("org.apache.derby.jdbc.ClientDriver");
               java.lang.Class.forName(localDriverName);

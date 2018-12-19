@@ -26,7 +26,8 @@ public class ContactHelper {
     // use the classname for the logger, this way you can refactor
     private final static Logger LOGGER = Logger.getLogger(ContactHelper.class
             .getName());
-     public static com.mobile.dto.Contact findByContactId(int id) {
+
+    public static com.mobile.dto.Contact findByContactId(int id) {
         Connection connection = null;
         try {
             connection = data.DatabaseManager.getConnection();
@@ -78,7 +79,6 @@ public class ContactHelper {
             Integer primaryKey = null;
 
             primaryKey = dao.insert(contact);
-            
 
             if (primaryKey > 0) {
                 contact.setContactId(primaryKey);
@@ -128,7 +128,7 @@ public class ContactHelper {
             if (dao.update(contact.getContactId().intValue(), contact)) {
                 LOGGER.log(Level.OFF, "updated database");
                 LOGGER.log(Level.OFF, "ended update ");
-                
+
                 return contact;
             } else {
                 LOGGER.log(Level.SEVERE, "Cannot update Service");
@@ -176,7 +176,7 @@ public class ContactHelper {
 
                 LOGGER.log(Level.OFF, "deleted service");
                 LOGGER.log(Level.OFF, "ended delete ");
-               
+
                 return null;
             } else {
                 LOGGER.log(Level.SEVERE, "Cannot delete Service");
@@ -201,7 +201,7 @@ public class ContactHelper {
 
     }
 
-     /**
+    /**
      * find all services in database
      *
      * @return
@@ -215,14 +215,14 @@ public class ContactHelper {
 
             //generated class to manage the table
             ContactDao dao = DaoFactory.createContactDao(connection);
-           
+
             //com.mobile.dto.Contact[] services = dao.findAllByActive(Boolean.FALSE);
- com.mobile.dto.Contact[] services = dao.findAllByInActive();
- 
+            com.mobile.dto.Contact[] services = dao.findAllByInActive();
+
             //Convert array to list and return the list
             List<com.mobile.dto.Contact> list = Arrays.asList(services);
             if (list != null) {
-                LOGGER.log(Level.OFF, "FOUND records [" + list.size() + "]");
+                LOGGER.log(Level.OFF, "FOUND records Inactive [" + list.size() + "]");
             } else {
                 LOGGER.log(Level.OFF, "FOUND no records ");
             }
@@ -242,7 +242,7 @@ public class ContactHelper {
         LOGGER.log(Level.OFF, "end findAll ");
         return null;
     }
-    
+
     /**
      * find all services in database
      *
@@ -261,13 +261,23 @@ public class ContactHelper {
 
             //Convert array to list and return the list
             List<com.mobile.dto.Contact> list = Arrays.asList(services);
+
+            //filter out
+            List<com.mobile.dto.Contact> listFilter = new ArrayList<com.mobile.dto.Contact>();
+            for (com.mobile.dto.Contact contact : list) {
+                if (contact.getActive()) {
+                    listFilter.add(contact);
+                }
+            }
+
             if (list != null) {
                 LOGGER.log(Level.OFF, "FOUND records [" + list.size() + "]");
+                LOGGER.log(Level.OFF, "FOUND records filter [" + listFilter.size() + "]");
             } else {
                 LOGGER.log(Level.OFF, "FOUND no records ");
             }
             LOGGER.log(Level.OFF, "end findAll ");
-            return list;
+            return listFilter;
         } catch (Exception ex) {
             Logger.getLogger(ContactHelper.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -294,7 +304,7 @@ public class ContactHelper {
         try {
             connection = data.DatabaseManager.getConnection();
             ContactDao serviceDao = DaoFactory.createContactDao(connection);
-       
+
             com.mobile.dto.Contact[] contact = serviceDao.findUUid(uuid);
             if (contact != null && contact.length > 0) {
                 //update usage date
