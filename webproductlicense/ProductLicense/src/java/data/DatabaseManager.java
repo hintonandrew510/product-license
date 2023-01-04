@@ -37,7 +37,7 @@ public class DatabaseManager {
              java.lang.Class.forName(driverName);
            
              connection = DriverManager.getConnection(localDatabaseURL,
-                   "root", "AVNS_mOUXndVvrMMxFzVCCPH");
+                   "license", "AVNS_mOUXndVvrMMxFzVCCPH");
         } 
        
         return connection;
