@@ -12,7 +12,8 @@ public class DatabaseManager {
 
 	  private static String databaseURL = "jdbc:mysql://node71581-env-9265129.whelastic.net/license";// address
           private static String databaseURLTest = "jdbc:mysql://sql3.freemysqlhosting.net/sql3241442";// address
-          private static String localDatabaseURL = "jdbc:mysql://localhost:3306/license?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC";
+          private static String localDatabaseURL = "jdbc:mysql://db-mysql-nyc1-75629-do-user-13210603-0.b.db.ondigitalocean.com:25060/license?useSSL=false";
+	
           private static String embeddedURL="jdbc:derby:sample";
           private static boolean isProduction = true;
 
