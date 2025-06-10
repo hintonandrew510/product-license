@@ -18,13 +18,13 @@
       <!-- intro end-->
       <!-- navbar-->
       <header class="header">
-         <nav class="navbar navbar-expand-lg">
+     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <div class="container">
                <a href="#intro" class="navbar-brand link-scroll"><img src="./img/system21.png" alt="" class="img-fluid" width="160" height="40"></a>
                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
                <div id="navbarSupportedContent" class="collapse navbar-collapse">
                   <ul class="navbar-nav ml-auto">
-                     <li class="nav-item"><a href="index.html" class="nav-link link-scroll">Home</a></li>
+                     <li class="nav-item"><a href="contacts" class="nav-link link-scroll">Home</a></li>
                      <li class="nav-item"><a href="agents" class="nav-link link-scroll">Consultants </a></li>
                      <li class="nav-item"><a href="logout" class="nav-link link-scroll">Logout</a></li>
                   </ul>
@@ -46,6 +46,9 @@
                         <th>Email</th>
                         <th>Password</th>
                         <th>Phone</th>
+                        <th>Edit</th>
+                        <th>Create License</th>
+                        
                      </tr>
                   </thead>
                   <tbody>
@@ -55,6 +58,8 @@
                         <td th:text="${contact.emailaddress}">2</td>
                         <td th:text="${contact.password}">2</td>
                         <td th:text="${contact.phone}">2</td>
+                        <td><a th:href="@{/edit/{id}(id=${contact.uuid})}">Edit</a></td>
+                          <td><a th:href="@{/createlicense/{id}(id=${contact.uuid})}">Generate</a></td>
                      </tr>
                   </tbody>
                </table>
