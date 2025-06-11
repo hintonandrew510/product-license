@@ -16,6 +16,8 @@ public interface ContactService {
     // read operation
     List<Contact> fetchContactList(org.springframework.data.domain.Sort sort);
 
+    // read operation
+    List<Contact> fetchActiveContactList(org.springframework.data.domain.Sort sort);
     // update operation
     Contact updateContact(Contact contact);
 	

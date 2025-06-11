@@ -41,7 +41,7 @@ public class ContactController {
 		// authenticationFacade.getAuthentication();
 		Sort sort = Sort.by(Sort.Direction.ASC, "name");
 
-		Iterable<Contact> contacts = contactService.fetchContactList(sort);
+		Iterable<Contact> contacts = contactService.fetchActiveContactList(sort);
 		boolean hasRows = false;
 		if (contacts != null) {
 			long size = contacts.spliterator().getExactSizeIfKnown();

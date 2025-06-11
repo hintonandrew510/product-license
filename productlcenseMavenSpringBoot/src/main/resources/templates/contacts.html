@@ -20,8 +20,7 @@
       <header class="header">
      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <div class="container">
-               <a href="#intro" class="navbar-brand link-scroll"><img src="./img/system21.png" alt="" class="img-fluid" width="160" height="40"></a>
-               <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+               
                <div id="navbarSupportedContent" class="collapse navbar-collapse">
                   <ul class="navbar-nav ml-auto">
                      <li class="nav-item"><a href="contacts" class="nav-link link-scroll">Home</a></li>
@@ -45,7 +44,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Password</th>
-                        <th>Phone</th>
+                        <th>Address</th>
                         <th>Edit</th>
                         <th>Create License</th>
                         
@@ -57,7 +56,7 @@
                         <td th:text="${contact.name}">2</td>
                         <td th:text="${contact.emailaddress}">2</td>
                         <td th:text="${contact.password}">2</td>
-                        <td th:text="${contact.phone}">2</td>
+                        <td th:text="${contact.address}">2</td>
                         <td><a th:href="@{/edit/{id}(id=${contact.uuid})}">Edit</a></td>
                           <td><a th:href="@{/createlicense/{id}(id=${contact.uuid})}">Generate</a></td>
                      </tr>
@@ -74,7 +73,7 @@
          <div class="container">
             <div class="row copyright">
                <div class="col-md-6">
-                  <p class="mb-md-0 text-center text-md-left">&copy;2018 The Guld Resource Group</p>
+                  <p class="mb-md-0 text-center text-md-left">&copy;2025 The Guld Resource Group</p>
                </div>
                <div class="col-md-6">
                   <!-- Please do not remove the backlink to us. It is part of the licence conditions. Thanks for understanding :)-->

@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 
@@ -29,6 +31,13 @@ public class ContactServiceImpl implements ContactService {
             
 
         return contactRepository.save(contact);
+    }
+
+    @Override
+      @Query(value = "SELECT * FROM contact where active = 1 ", nativeQuery = true)
+    public List<Contact> fetchActiveContactList(Sort sort) {
+      
+        return (List<Contact>) contactRepository.findAll(sort);
     }
 
     

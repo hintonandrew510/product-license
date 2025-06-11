@@ -67,6 +67,20 @@
             <version>2.7.4</version>
 
         </dependency>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.33</version>
+</dependency>
+        
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-jdbc</artifactId>
+    <version>7.0.0-M5</version>
+</dependency>
 
         <!-- https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api 
         <dependency> <groupId>javax.persistence</groupId> <artifactId>javax.persistence-api</artifactId> 
