@@ -44,6 +44,8 @@
                         <th>Email Address</th>
                         <th>Password</th>
                         <th>Address</th>
+                        <th>Client Type</th>
+                        
                         <th>Edit</th>
                         <th>Create License</th>
                         
@@ -56,6 +58,7 @@
                         <td th:text="${contact.emailaddress}">2</td>
                         <td th:text="${contact.password}">2</td>
                         <td th:text="${contact.address}">2</td>
+                          <td th:text="${contact.clientType}">2</td>
                         <td><a th:href="@{/edit/{id}(id=${contact.uuid})}">Edit</a></td>
                           <td><a th:href="@{/createlicense/{id}(id=${contact.uuid})}">Generate</a></td>
                      </tr>
