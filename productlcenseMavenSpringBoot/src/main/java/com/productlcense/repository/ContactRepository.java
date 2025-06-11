@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ContactRepository extends JpaRepository<Contact, Integer> {
 
-	
+    @Query("SELECT c FROM Contact c WHERE c.uuid = :uuid")
+    Contact findByUUID(@Param("uuid") String uuid);
 
 }

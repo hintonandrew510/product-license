@@ -13,11 +13,18 @@ public interface ContactService {
      // save operation
     Contact save(Contact Contact);
 
+    
+    //
+    Contact findByUUID(String UUID);
+
     // read operation
     List<Contact> fetchContactList(org.springframework.data.domain.Sort sort);
 
     // read operation
     List<Contact> fetchActiveContactList(org.springframework.data.domain.Sort sort);
+    
+     // read operation
+    List<Contact> fetchInActiveContactList(org.springframework.data.domain.Sort sort);
     // update operation
     Contact updateContact(Contact contact);
 	
