@@ -1,5 +1,6 @@
 package com.productlcense.service;
 
+import com.productlcense.helper.LicenseHelper;
 import com.productlcense.model.Contact;
 import com.productlcense.repository.ContactRepository;
 import java.util.List;
@@ -16,10 +17,7 @@ public class ContactServiceImpl implements ContactService {
     @Autowired
     private ContactRepository contactRepository;
 
-    @Override
-    public Contact save(Contact contact) {
-        return contactRepository.save(contact);
-    }
+   
 
     @Override
     public List<Contact> fetchContactList(org.springframework.data.domain.Sort sort) {
@@ -29,6 +27,10 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public Contact updateContact(Contact contact) {
 
+         contact.setEmailaddress(contact.getAddress());
+         String license = LicenseHelper.generateLicense(contact);
+    
+         contact.setLicense(license);
         return contactRepository.save(contact);
     }
 
@@ -50,6 +52,16 @@ public class ContactServiceImpl implements ContactService {
     public Contact findByUUID(String UUID) {
        
          return contactRepository.findByUUID(UUID);
+    }
+
+    @Override
+    public Contact add(Contact contact) {
+             String uuid = java.util.UUID.randomUUID().toString();
+         String license = LicenseHelper.generateLicense(contact);
+         contact.setUuid(uuid);
+         contact.setLicense(license);
+           contact.setEmailaddress(contact.getAddress());
+         return contactRepository.save(contact);
     }
 
 }

@@ -2,6 +2,8 @@ package com.productlcense.controller;
 
 import com.productlcense.model.Contact;
 import com.productlcense.service.ContactService;
+import java.sql.Timestamp;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
@@ -10,7 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller // This means that this class is a Controller
 public class ContactController {
@@ -138,9 +143,45 @@ public class ContactController {
     @GetMapping("/edit/{id}")
     public String showUpdateForm(@PathVariable("id") String id, Model model) {
         Contact contact = contactService.findByUUID(id);
-                
+
         model.addAttribute("contact", contact);
         return "detail";
     }
+
+    @PostMapping("/update/{id}")
+    public String update(@PathVariable("id") long id, @Valid Contact contact,
+            BindingResult result, Model model) {
+        String errors =  validate( contact);
+        
+        ObjectError error = new ObjectError("contact","error");
+        result.addError(error);
+        if (result.hasErrors()) {
+            //user.setId(id);
+           // return "update-user";
+        }
+
+        contactService.updateContact(contact);
+        return "redirect:/";
+    }
+
+    @PostMapping("/adduser")
+    public String addUser(@Valid Contact contact, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "add-user";
+        }
+
+        contactService.add(contact);
+        return "redirect:/";
+    }
+    
+    public String validate(Contact contact)  {
+        Timestamp endTime = contact.getEndDate();
+         if (contact.getStartDate().before(endTime)) {
+             return "End date before start date";
+         }
+         return null;
+    }
+    
+    
 
 }

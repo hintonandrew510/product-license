@@ -10,9 +10,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface ContactService {
-     // save operation
-    Contact save(Contact Contact);
 
+    Contact add(Contact Contact);
+        // update operation
+    Contact updateContact(Contact contact);
+    
+    
     
     //
     Contact findByUUID(String UUID);
@@ -25,8 +28,7 @@ public interface ContactService {
     
      // read operation
     List<Contact> fetchInActiveContactList(org.springframework.data.domain.Sort sort);
-    // update operation
-    Contact updateContact(Contact contact);
+   
 	
 
 }

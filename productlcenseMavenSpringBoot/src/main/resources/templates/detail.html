@@ -52,7 +52,7 @@
                
             <div class="mb-3">
                 <label for="name" class="form-label">Type</label>
-                <select th:field="*{clientType}">
+                <select class="form-select" th:field="*{clientType}">
                     <option th:value="'Radio'" th:text="Radio"></option>
                      <option th:value="'TV'" th:text="TY"></option>
    
@@ -61,19 +61,19 @@
             </div>
                 <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input th:field="*{password}" id="password"  type="text" class="form-control">
+                <input required th:field="*{password}" id="password"  type="text" class="form-control">
                 </div>
              <div class="mb-3">
                 <label for="emailaddress" class="form-label">Email address</label>
              
-                <input th:field="*{emailaddress}" id="emailaddress" type="email" class="form-control" aria-describedby="emailHelp">
+                <input required th:field="*{address}" id="address" type="email" class="form-control" aria-describedby="emailHelp">
                
             </div>
                
                  
             <div class="mb-3">
                 <label>Select Start Date: </label>
-                <input class="form-control" th:field="*{startDate}" id="startDate"
+                <input required class="form-control" th:field="*{startDate}" id="startDate"
                   type="datetime-local"  />
             
             </div>
@@ -82,23 +82,127 @@
             <div class="mb-3">
              <label>Select End Date: </label>
          
-                 <input class="form-control"  type="datetime-local" 
+                 <input required class="form-control"  type="datetime-local" 
                th:field="*{endDate}" id="endDate">
            
         </div>
 
                
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-             
-                <input th:field="*{emailaddress}" id="emailaddress" type="email" class="form-control" aria-describedby="emailHelp">
+            
                
-            </div>
+                 <div class="mb-3">
+                    <label  class="form-label" for="nameInputPhone">Phone</label>
+
+                    <input  th:field="*{phone}" id="phone" type="tel"  class="form-control"  pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"/>
+
+                </div>
+
+                    <div class="mb-3">
+                <label for="password" class="form-label">streetaddress</label>
+                <input th:field="*{streetaddress}" id="streetaddress"  type="text" class="form-control">
+                </div>
+               
+                    <div class="mb-3">
+                <label for="password" class="form-label">City</label>
+                <input th:field="*{city}" id="city"  type="text" class="form-control">
+                </div>
+               
+               
+                    <div class="mb-3">
+                <label for="password" class="form-label">State</label>
+                <select class="form-select" th:field="*{state}">
+                    
+                   
+                     
+                       <option th:value="'AL'" th:text="Alabama"></option>
+                       <option th:value="'AK'" th:text="Alaska"></option>
+                       <option th:value="'AZ'" th:text="Arizona"></option>
+                       <option th:value="'AR'" th:text="Arkansas"></option>
+                       <option th:value="'CA'" th:text="California"></option>
+                       <option th:value="'CO'" th:text="Colorado"></option>
+                       <option th:value="'CT'" th:text="Connecticut"></option>
+                       <option th:value="'DE'" th:text="Delaware"></option>
+                       <option th:value="'DC'" th:text="DistrictOfColumbia"></option>
+                       <option th:value="'FL'" th:text="Florida"></option>
+                       <option th:value="'GA'" th:text="Georgia"></option>
+                       <option th:value="'HI'" th:text="Hawaii"></option>
+                       <option th:value="'ID'" th:text="Idaho"></option>
+                       <option th:value="'IL'" th:text="Illinois"></option>
+                       <option th:value="'IN'" th:text="Indiana"></option>
+                       <option th:value="'IA'" th:text="Iowa"></option>
+                       <option th:value="'KS'" th:text="Kansas"></option>
+                       <option th:value="'KY'" th:text="Kentucky"></option>
+                       <option th:value="'LA'" th:text="Louisiana"></option>
+                       <option th:value="'ME'" th:text="Maine"></option>
+                       <option th:value="'MD'" th:text="Maryland"></option>
+                       <option th:value="'MA'" th:text="Massachusetts"></option>
+                       <option th:value="'MI'" th:text="Michigan"></option>
+                       <option th:value="'MN'" th:text="Minnesota"></option>
+                       <option th:value="'MS'" th:text="Mississippi"></option>
+                       <option th:value="'MO'" th:text="Missouri"></option>
+                       <option th:value="'MT'" th:text="Montana"></option>
+                       <option th:value="'NE'" th:text="Nebraska"></option>
+                       <option th:value="'NV'" th:text="Nevada"></option>
+                       <option th:value="'NH'" th:text="NewHampshire"></option>
+                       <option th:value="'NJ'" th:text="NewJersey"></option>
+                       <option th:value="'NM'" th:text="NewMexico"></option>
+                       <option th:value="'NY'" th:text="NewYork"></option>
+                       <option th:value="'NC'" th:text="NorthCarolina"></option>
+                       <option th:value="'ND'" th:text="NorthDakota"></option>
+                       <option th:value="'OH'" th:text="Ohio"></option>
+                       <option th:value="'OK'" th:text="Oklahoma"></option>
+                       <option th:value="'OR'" th:text="Oregon"></option>
+                       <option th:value="'PA'" th:text="Pennsylvania"></option>
+                       <option th:value="'RI'" th:text="RhodeIsland"></option>
+                       <option th:value="'SC'" th:text="SouthCarolina"></option>
+                       <option th:value="'SD'" th:text="SouthDakota"></option>
+                       <option th:value="'TN'" th:text="Tennessee"></option>
+                       <option th:value="'TX'" th:text="Texas"></option>
+                       <option th:value="'UT'" th:text="Utah"></option>
+                       <option th:value="'VT'" th:text="Vermont"></option>
+                       <option th:value="'VA'" th:text="Virginia"></option>
+                       <option th:value="'WA'" th:text="Washington"></option>
+                       <option th:value="'WV'" th:text="WestVirginia"></option>
+                       <option th:value="'WI'" th:text="Wisconsin"></option>
+                       <option th:value="'WY'" th:text="Wyoming"></option>
+   
+                </select>
+              
+                </div>
+               
+                  <div class="mb-3">
+                <label for="password" class="form-label">Zip</label>
+                <input th:field="*{zipcode}"  type="text" class="form-control">
+                </div>
+               
+               
+                   <div class="mb-3">
+                <label for="password" class="form-label">Description</label>
+                <input th:field="*{generalInformation}"  type="text" class="form-control">
+                </div>
+               
+               
          
             <div class="mb-3 form-check">
                 <input th:field="*{active}" type="checkbox" class="form-check-input" id="active">
                 <label class="form-check-label" for="exampleCheck1">Active</label>
             </div>
+               
+               
+               
+               <div>
+                   <p>
+                   
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Button with data-bs-target
+  </button>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body" th:utext="${license}">
+    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+  </div>
+</div>
+               </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
          </div>
