@@ -151,7 +151,7 @@ public class ContactController {
     @PostMapping("/update/{id}")
     public String update(@PathVariable("id") long id, @Valid Contact contact,
             BindingResult result, Model model) {
-        String errors =  validate( contact);
+
         
         ObjectError error = new ObjectError("contact","error");
         result.addError(error);
@@ -174,13 +174,7 @@ public class ContactController {
         return "redirect:/";
     }
     
-    public String validate(Contact contact)  {
-        Timestamp endTime = contact.getEndDate();
-         if (contact.getStartDate().before(endTime)) {
-             return "End date before start date";
-         }
-         return null;
-    }
+  
     
     
 

@@ -10,6 +10,7 @@
       <meta name="robots" content="all,follow">
       <link href="/css/bootstrap.min.css" rel="stylesheet">
       <script src="/js/bootstrap.bundle.min.js"></script>
+       <script src="/js/formvalidation.js"></script>
           <link href=
 "https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" 
           rel="stylesheet" type="text/css" />
@@ -44,7 +45,7 @@
            <form action="#" 
                  th:action="@{/update/{id}(id=${contact.contactId})}" 
             th:object="${contact}" 
-  method="post">
+  method="post" onsubmit="return validateForm()">
              <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
                 <input th:field="*{name}" type="text" class="form-control" id="name">
@@ -93,8 +94,8 @@
                  <div class="mb-3">
                     <label  class="form-label" for="nameInputPhone">Phone</label>
 
-                    <input  th:field="*{phone}" id="phone" type="tel"  class="form-control"  pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"/>
-
+                    <input  th:field="*{phone}" id="phone" type="tel"  class="form-control"  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
+                    <small>Format: 919-777-9999</small>
                 </div>
 
                     <div class="mb-3">
@@ -177,11 +178,14 @@
                
                
                    <div class="mb-3">
-                <label for="password" class="form-label">Description</label>
+                <label for="generalInformation" class="form-label">Description</label>
                 <input th:field="*{generalInformation}"  type="text" class="form-control">
                 </div>
                
-               
+                  <div class="mb-3">
+                <label for="password" class="form-label">llll</label>
+                <input th:field="*{license}"  type="text" class="form-control">
+                </div>
          
             <div class="mb-3 form-check">
                 <input th:field="*{active}" type="checkbox" class="form-check-input" id="active">
