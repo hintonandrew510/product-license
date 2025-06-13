@@ -152,7 +152,6 @@ public class ContactController {
     public String update(@PathVariable("id") long id, @Valid Contact contact,
             BindingResult result, Model model) {
 
-        
         ObjectError error = new ObjectError("contact","error");
         result.addError(error);
         if (result.hasErrors()) {

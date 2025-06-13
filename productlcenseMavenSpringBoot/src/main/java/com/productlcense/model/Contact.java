@@ -11,9 +11,11 @@ import jakarta.persistence.Table;
 
 import java.io.Serializable;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.text.MaskFormatter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
@@ -93,7 +95,9 @@ public class Contact implements Serializable {
     }
 
     public String getPhone() {
-         String phoneMask = "###-###-####";
+       
+        
+        String phoneMask = "###-###-####";
         String phoneNumber = phone;
 
         MaskFormatter maskFormatter;
@@ -104,45 +108,46 @@ public class Contact implements Serializable {
             phone = maskFormatter.valueToString(phoneNumber);
             return phone;
         } catch (ParseException ex) {
-            Logger.getLogger(Contact.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(Contact.class.getName()).log(Level.SEVERE, null, ex);
             return phone;
         }
-        
+    
+
     }
 
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public Timestamp getCreatedDate() {
+    public Date getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Timestamp createdDate) {
+    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
 
-    public Timestamp getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Timestamp startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public Timestamp getUsageDate() {
+    public Date getUsageDate() {
         return usageDate;
     }
 
-    public void setUsageDate(Timestamp usageDate) {
+    public void setUsageDate(Date usageDate) {
         this.usageDate = usageDate;
     }
 
-    public Timestamp getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Timestamp endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
@@ -210,10 +215,14 @@ public class Contact implements Serializable {
     private String license;
     private String generalInformation;
     private String phone;
-    private Timestamp createdDate;
-    private Timestamp startDate;
-    private Timestamp usageDate;
-    private Timestamp endDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date createdDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date startDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date usageDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date endDate;
     private String address;
     @Column(name = "emailaddress")
     private String emailaddress;
