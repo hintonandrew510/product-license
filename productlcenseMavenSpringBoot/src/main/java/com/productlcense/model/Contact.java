@@ -1,24 +1,25 @@
 package com.productlcense.model;
 
-import java.sql.Timestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PostLoad;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+
 
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import java.util.concurrent.TimeUnit;
 import javax.swing.text.MaskFormatter;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
-import org.springframework.stereotype.Component;
-import org.springframework.web.context.annotation.SessionScope;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
@@ -207,6 +208,23 @@ public class Contact implements Serializable {
         this.active = active;
     }
 
+    public long getDaysBetween() {
+      
+  
+        return daysBetween;
+    }
+
+    
+    @PostLoad
+    public void computeDaysBetween() {
+        long diff = endDate.getTime() - startDate.getTime();
+        daysBetween=TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+  
+    }
+    public void setDaysBetween(long daysBetween) {
+        this.daysBetween = daysBetween;
+    }
+
     @Column(name = "password")
     private String password;
     private String name;
@@ -231,5 +249,7 @@ public class Contact implements Serializable {
     private String state;
     private String zipcode;
     private Boolean active;
+    @Transient
+    private long daysBetween;
    
 }

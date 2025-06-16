@@ -6,6 +6,7 @@ package com.productlcense.databaseconversion;
 
 
 import java.sql.*;
+import java.text.MessageFormat;
 
 public class DatabaseConverter {
 
@@ -21,9 +22,11 @@ public class DatabaseConverter {
             //"jdbc:mysql://db-mysql-nyc1-75629-do-user-13210603-0.b.db.ondigitalocean.com:25060/license?useSSL=false",
             //"license", "AVNS_mOUXndVvrMMxFzVCCPH");
 
-            String url = "jdbc:mysql://db-mysql-nyc1-75629-do-user-13210603-0.b.db.ondigitalocean.com:25060/license?useSSL=false";
-
-            //
+           // String url = "jdbc:mysql://db-mysql-nyc1-75629-do-user-13210603-0.b.db.ondigitalocean.com:25060/license?useSSL=false";
+             String url = "jdbc:mysql://db-mysql-nyc1-75629-jun-andrew-do-user-13210603-0.m.db.ondigitalocean.com:25060/license?useSSL=false";
+            
+// String url = "jdbc:mysql://db-mysql-nyc1-75629-do-user-13210603-0.b.db.ondigitalocean.com:25060/license?useSSL=false";
+           //
             //   String url ="jdbc:mysql://db-mysql-nyc1-75629-do-user-13210603-0.b.db.ondigitalocean.com:25060/license?user=license&password=AVNS_mOUXndVvrMMxFzVCCPH";
             /*   VARCHAR(250) not null,
  
@@ -45,9 +48,11 @@ varchar(250) NOT NULL,
              */
             mysqlconnection = DriverManager.getConnection(url, "license", "AVNS_mOUXndVvrMMxFzVCCPH");
 
-            Class.forName("org.hsqldb.jdbc.JDBCDriver");
-            System.out.println("com.mysql.jdbc.Driverdriver");
+           // Class.forName("org.hsqldb.jdbc.JDBCDriver");
+           // System.out.println("com.mysql.jdbc.Driverdriver");
             String hsqldbURL = "jdbc:hsqldb:file:/opt/wizard/database/db/license;ifexists=true;hsqldb.lock_file=false;hsqldb.sqllog=3";
+            Driver registeredDriver = new org.hsqldb.jdbc.JDBCDriver();
+            DriverManager.registerDriver(registeredDriver);
             Connection hsqldbConnection = DriverManager.getConnection(hsqldbURL, "SA", "");
 
             StringBuilder contactbuilder = new StringBuilder();
@@ -102,6 +107,34 @@ varchar(250) NOT NULL,
             //p.execute();
             // System.out.println("deleted");
 
+            
+            
+            //insert statement
+           String insertStringCol = " INSERT INTO contact (contact_id, "
+                   + "name, "
+                   + "uuid, "
+                   + "license, "
+                   + "general_information, "
+                   + "phone, "
+                   + "address, "
+                   + "streetaddress, "
+                   + "city, "
+                   + "state, "
+                   + "zipcode, "
+                   + "emailaddress, "
+                   + "password, "
+                   + "client_type, "
+                   + "usage_date, "
+                   + "created_date, "
+                   + "start_date, "
+                   + "end_date, "
+                   + "active)";
+           
+              String instertStringValues = "VALUES ({0} , '{1}' , '{2}' , {3} , {4}  "
+                      + ", {5} , {6} , {7} , {8} , {9} , {10} , {11} , {12} , {13} , {14} ,"
+                      + " {15} , {16} , {17} , {18} )";
+           
+           
             ResultSet rs = stmt.executeQuery(QUERY);
 
             while (rs.next()) {
@@ -132,7 +165,13 @@ varchar(250) NOT NULL,
                 java.sql.Date start_date = rs.getDate("start_date");
                 java.sql.Date end_date = rs.getDate("end_date");
                 Boolean active = rs.getBoolean("active");
+                
+                
+                String message = MessageFormat.format(instertStringValues,
+                        id, name, );
 
+                
+                
                  //
                 PreparedStatement preparedStatement = hsqldbConnection.prepareStatement(contactbuilder.toString());
                 preparedStatement.setInt(1, id);
@@ -140,8 +179,8 @@ varchar(250) NOT NULL,
                 preparedStatement.setString(3, uuid);
                 preparedStatement.setString(4, license);
                 preparedStatement.setString(5, generalinformation);
-                preparedStatement.setString(6, address);
-                preparedStatement.setString(7, phone);
+                preparedStatement.setString(6, phone);
+                preparedStatement.setString(7, address);
                 preparedStatement.setString(8, streetaddress);
                 preparedStatement.setString(9, city);
                 preparedStatement.setString(10, state);

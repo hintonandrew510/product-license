@@ -48,7 +48,8 @@
   method="post" onsubmit="return validationForm()">
                 <input th:field="*{uuid}" type="hidden" class="form-control" id="uuid">
                 <input th:field="*{createdDate}" type="hidden" class="form-control" id="createdDate">
-               
+                 <input th:field="*{contactId}" type="hidden" class="form-control" id="contactId">
+             
                 <input th:field="*{usageDate}" type="hidden" class="form-control" id="usageDate">
                
                
@@ -200,19 +201,7 @@
                
                
                
-               <div>
-                   <p>
-                   
-  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Button with data-bs-target
-  </button>
-</p>
-<div class="collapse" id="collapseExample">
-  <div class="card card-body" th:utext="${license}">
-    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-  </div>
-</div>
-               </div>
+
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
          </div>

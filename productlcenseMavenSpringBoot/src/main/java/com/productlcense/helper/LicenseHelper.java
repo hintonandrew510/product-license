@@ -53,22 +53,11 @@ public class LicenseHelper {
         //   this.contact.setAddress(exampleInputEmail);
         String startDayMills = convertDateToMilliseconds(contact.getStartDate());
 
-        StringBuilder builder = new StringBuilder();
+  
         //{\"enddate\":20200513,\"startdate\":20171003,\"uuid\":\"a2772b00-b162-450b-9f50-c31a9a371ec3\"}
 
         String endDayMills = convertDateToMilliseconds(contact.getEndDate());
-        builder.append("{\"enddate\":");
-        builder.append("\"");
-        builder.append(endDayMills);
-        builder.append("\"");
-        builder.append(",\"startdate\":");
-        builder.append("\"");
-        builder.append(startDayMills);
-        builder.append("\"");
-        builder.append(",\"uuid\":");
-        builder.append("\"");
-        builder.append(contact.getUuid());
-        builder.append("\"}");
+     
         json.put("startdate", startDayMills);
         json.put("enddate", endDayMills);
         json.put("uuid", contact.getUuid());
@@ -76,10 +65,10 @@ public class LicenseHelper {
         //{"enddate":20200513,"startdate":20171003,"uuid":"a2772b00-b162-450b-9f50-c31a9a371ec3"}
         String test = json.toString();
         //{"enddate":"20200513","startdate":"20171003","uuid":"a2772b00-b162-450b-9f50-c31a9a371ec3"}
-        String finalJSON = builder.toString();
+        
         RijndaelCrypt rijndaelCrypt = new RijndaelCrypt(key);
         String encrypt = rijndaelCrypt.encrypt(test.getBytes());
-        return null;
+        return encrypt;
     }
 
 }

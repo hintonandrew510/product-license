@@ -40,10 +40,9 @@
                   <thead>
                      <tr>
                       
-                        <th>Name</th>
-                        <th>Email Address</th>
-                        <th>Password</th>
-                        <th>Address</th>
+                        <th>City</th>
+                        <th>Days Remaining</th>
+                      
                         <th>Client Type</th>
                         
                         <th>Edit</th>
@@ -54,10 +53,9 @@
                   <tbody>
                      <tr th:each="contact : ${contacts}">
                   
-                        <td th:text="${contact.name}">2</td>
-                        <td th:text="${contact.emailaddress}">2</td>
-                        <td th:text="${contact.password}">2</td>
-                        <td th:text="${contact.address}">2</td>
+                        <td th:text="${contact.city}">2</td>
+                        <td th:text="${contact.daysBetween}">2</td>
+                    
                           <td th:text="${contact.clientType}">2</td>
                         <td><a th:href="@{/edit/{id}(id=${contact.uuid})}">Edit</a></td>
                           <td><a th:href="@{/createlicense/{id}(id=${contact.uuid})}">Generate</a></td>

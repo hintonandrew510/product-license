@@ -35,7 +35,7 @@ public class ContactController {
         // Authentication authentication = authenticationFacade.getAuthentication();
         // sort by nameAuthentication authentication =
         // authenticationFacade.getAuthentication();
-        Sort sort = Sort.by(Sort.Direction.ASC, "name");
+        Sort sort = Sort.by(Sort.Direction.ASC, "city");
 
         Iterable<Contact> contacts = contactService.fetchActiveContactList(sort);
         boolean hasRows = false;
@@ -63,7 +63,7 @@ public class ContactController {
         // Authentication authentication = authenticationFacade.getAuthentication();
         // sort by nameAuthentication authentication =
         // authenticationFacade.getAuthentication();
-        Sort sort = Sort.by(Sort.Direction.ASC, "name");
+        Sort sort = Sort.by(Sort.Direction.ASC, "city");
 
         Iterable<Contact> contacts = contactService.fetchInActiveContactList(sort);
         boolean hasRows = false;
@@ -91,7 +91,7 @@ public class ContactController {
         // Authentication authentication = authenticationFacade.getAuthentication();
         // sort by nameAuthentication authentication =
         // authenticationFacade.getAuthentication();
-        Sort sort = Sort.by(Sort.Direction.ASC, "name");
+        Sort sort = Sort.by(Sort.Direction.ASC, "city");
 
         Iterable<Contact> contacts = contactService.fetchContactList(sort);
         boolean hasRows = false;
@@ -119,7 +119,7 @@ public class ContactController {
         // Authentication authentication = authenticationFacade.getAuthentication();
         // sort by nameAuthentication authentication =
         // authenticationFacade.getAuthentication();
-        Sort sort = Sort.by(Sort.Direction.ASC, "name");
+        Sort sort = Sort.by(Sort.Direction.ASC, "city");
 
         Iterable<Contact> contacts = contactService.fetchActiveContactList(sort);
         boolean hasRows = false;
