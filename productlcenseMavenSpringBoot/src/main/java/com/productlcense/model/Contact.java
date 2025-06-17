@@ -13,6 +13,10 @@ import jakarta.persistence.Transient;
 
 import java.io.Serializable;
 import java.text.ParseException;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import java.util.concurrent.TimeUnit;
@@ -217,8 +221,19 @@ public class Contact implements Serializable {
     
     @PostLoad
     public void computeDaysBetween() {
-        long diff = endDate.getTime() - startDate.getTime();
-        daysBetween=TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+        long diff = startDate.getTime() - endDate.getTime();
+         java.time.LocalDate currentlocalDate =  java.time.LocalDate.now();
+         java.time.LocalDate endDatelocalDate = endDate.toInstant()
+                   .atZone(ZoneId.systemDefault())
+                   .toLocalDate();
+  daysBetween = ChronoUnit.DAYS.between(currentlocalDate, endDatelocalDate);
+  
+  LocalDate today = LocalDate.now();
+LocalDate yesterday = today.minusDays(1);
+// Duration oneDay = Duration.between(today, yesterday); // throws an exception
+        daysBetween = Duration.between(today.atStartOfDay(), endDatelocalDate.atStartOfDay()).toDays() //
+                // daysBetween=TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+;
   
     }
     public void setDaysBetween(long daysBetween) {
