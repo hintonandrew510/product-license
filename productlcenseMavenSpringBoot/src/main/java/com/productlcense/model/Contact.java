@@ -40,7 +40,7 @@ public class Contact implements Serializable {
      */
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer contactId;
 
     public Integer getContactId() {
@@ -266,5 +266,29 @@ LocalDate yesterday = today.minusDays(1);
     private Boolean active;
     @Transient
     private long daysBetween;
+
+    public Contact() {
+    }
+
+    public Contact(String password, String name, String uuid, String clientType, String generalInformation, String phone, Date createdDate, Date startDate, Date endDate, String address, String emailaddress, String streetaddress, String city, String state, String zipcode, Boolean active) {
+        this.password = password;
+        this.name = name;
+        this.uuid = uuid;
+        this.clientType = clientType;
+        this.generalInformation = generalInformation;
+        this.phone = phone;
+        this.createdDate = createdDate;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.address = address;
+        this.emailaddress = emailaddress;
+        this.streetaddress = streetaddress;
+        this.city = city;
+        this.state = state;
+        this.zipcode = zipcode;
+        this.active = active;
+    }
+    
+    
    
 }

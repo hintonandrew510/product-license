@@ -14,6 +14,7 @@ public interface ContactService {
     Contact add(Contact Contact);
         // update operation
     Contact updateContact(Contact contact);
+    Contact getNewDaultContact();
     
     
     

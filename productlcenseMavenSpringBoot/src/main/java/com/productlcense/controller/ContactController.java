@@ -163,17 +163,23 @@ public class ContactController {
         return "redirect:/";
     }
 
-    @PostMapping("/adduser")
-    public String addUser(@Valid Contact contact, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "add-user";
-        }
+    @PostMapping("/add")
+    public String add(@Valid Contact contact, BindingResult result, Model model) {
+//        if (result.hasErrors()) {
+//            return "add-user";
+//        }
 
         contactService.add(contact);
         return "redirect:/";
     }
     
-  
+    @GetMapping("/create")
+    public String showCreateForm(Model model) {
+         Contact contact = contactService.getNewDaultContact();
+
+        model.addAttribute("contact", contact);
+        return "add";
+    }
     
     
 

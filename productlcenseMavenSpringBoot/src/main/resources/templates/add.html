@@ -43,12 +43,12 @@
          <div class="container" style="background-color: white;color:black;">
       
            <form action="#" 
-                 th:action="@{/update/{id}(id=${contact.contactId})}" 
+                 th:action="@{/add}" 
             th:object="${contact}" 
   method="post" onsubmit="return validationForm()">
                 <input th:field="*{uuid}" type="hidden" class="form-control" id="uuid">
                 <input th:field="*{createdDate}" type="hidden" class="form-control" id="createdDate">
-                 <input th:field="*{contactId}" type="hidden" class="form-control" id="contactId">
+                <input th:field="*{contactId}" type="hidden" class="form-control" id="contactId">
              
                 <input th:field="*{usageDate}" type="hidden" class="form-control" id="usageDate">
                
@@ -189,10 +189,7 @@
                 <input th:field="*{generalInformation}"  type="text" class="form-control">
                 </div>
                
-                  <div class="mb-3">
-                <label for="password" class="form-label">llll</label>
-                <input th:field="*{license}"  type="text" class="form-control">
-                </div>
+                  
          
             <div class="mb-3 form-check">
                 <input th:field="*{active}" type="checkbox" class="form-check-input" id="active">
