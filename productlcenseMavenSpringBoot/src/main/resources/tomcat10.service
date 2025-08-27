@@ -1,0 +1,25 @@
+[Unit]
+Description=Tomcat 10 servlet container
+After=network.target
+
+[Service]
+Type=forking
+
+User=wizard
+Group=tomcat
+
+Environment="JAVA_HOME=/usr/local/jdk-24"
+#Environment="JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.412.b08-1.el7_9.x86_64"
+
+Environment="JAVA_OPTS=-Djava.security.egd=file:///dev/urandom"
+
+Environment="CATALINA_BASE=/opt/apache-tomcat-10.1.44"
+Environment="CATALINA_HOME=/opt/apache-tomcat-10.1.44"
+Environment="CATALINA_PID=/opt/apache-tomcat-10.1.44/temp/tomcat.pid"
+Environment="CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
+
+ExecStart=/usr/bin/authbind --deep /opt/apache-tomcat-10.1.44/bin/startup.sh
+ExecStop=/opt/apache-tomcat-10.1.44/bin/shutdown.sh
+
+[Install]
+WantedBy=multi-user.target

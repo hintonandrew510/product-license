@@ -1,0 +1,51 @@
+curl -C - https://download.java.net/java/ga/jdk11/openjdk-11_osx-x64_bin.tar.gz -O openjdk-11_osx-x64_bin.tar.gz
+
+curl -C - https://download.java.net/java/ga/jdk11/openjdk-11_osx-x64_bin.tar.gz -O openjdk-11_osx-x64_bin.tar.gz
+
+ tar xf openjdk-24.0.2_linux-aarch64_bin.tar.gz
+sudo mv jdk-24.0.2 /Library/Java/JavaVirtualMachines/
+
+curl -OL https://download.oracle.com/java/24/archive/jdk-24_linux-x64_bin.tar.gz
+tar xf jdk-24_linux-x64_bin.tar.gz
+sudo mv jdk-24 /Library/Java/JavaVirtualMachines/
+sudo alternatives --config java
+sudo alternatives --install /usr/bin/java java /usr/local/jdk-24/bin/java 99
+sudo alternatives --install /usr/bin/javac javac /usr/local/jdk-24/bin/javac 99
+
+
+Environment="JAVA_HOME=/usr/bin/java"
+19.040 INFO [main] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/opt/apache-tomcat-9.0.80/webapps/ProductLicense.war] 
+has finished in [$
+26-Aug-2025 20:11:
+
+
+    <!-- Define an SSL/TLS HTTP/1.1 Connector on port 8443
+         This connector uses the NIO implementation. The default
+         SSLImplementation will depend on the presence of the APR/native
+         library and the useOpenSSL attribute of the AprLifecycleListener.
+         Either JSSE or OpenSSL style configuration may be used regardless of
+         the SSLImplementation selected. JSSE style configuration is used below.
+    -->
+    <Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol"
+               maxThreads="150"  maxKeepAliveRequests="0"  SSLEnabled="true" proxyPort="443" >
+        <SSLHostConfig>
+            <Certificate certificateKeystoreFile="conf/new.tomcat.keystore"
+                         type="RSA" />
+        </SSLHostConfig>
+    </Connector>
+
+<Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol"
+               maxThreads="150" SSLEnabled="true"
+               maxParameterCount="1000"
+               >
+        <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
+        <SSLHostConfig>
+            <Certificate certificateKeystoreFile="conf/localhost-rsa.jks"
+                         certificateKeystorePassword="changeit" type="RSA" />
+        </SSLHostConfig>
+    </Connector>
+
+sudo cp new.tomcat.keystore /opt/apache-tomcat-10.1.44/conf
+/opt/apache-tomcat-10.1.44/webapps
+sudo update-alternatives --display java
+curl -C - https://download.java.net/java/GA/jdk24.0.2/fdc5d0102fe0414db21410ad5834341f/12/GPL/openjdk-24.0.2_linux-aarch64_bin.tar.gz O openjdk-24.tar.gz
